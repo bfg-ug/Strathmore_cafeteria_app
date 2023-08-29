@@ -1,36 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled1/global.dart';
 
-class introPage_2 extends StatelessWidget{
-
-
+class introPage_2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xffeae9e5),
-
+      color: appcolors.backgroundColor,
       child: Center(
-
           child: Column(
+        children: [
+          SizedBox(height: 220),
+          Stack(
             children: [
-
-              SizedBox(height: 220),
-              Container(
-
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Lottie.network('https://assets5.lottiefiles.com/packages/lf20_fq7pwzey.json'),
-                  )),
               Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text("Take Tailored Online courses made by Uneb trained teachers",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              )
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(200),
+                  child: Container(
+                    color: Color(0xffFDE0D2),
+                    height: 300,
+                    width: 300,
+                  ),
+                ),
+              ),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 50),
+                  child: Image(
+                    image: AssetImage('lib/images/order.png'),
+                  )),
             ],
-          )),
-
-
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text("Order food",
+                style: GoogleFonts.poppins(
+                    fontSize: 44,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500)),
+          )
+        ],
+      )),
     );
-
   }
-
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:untitled1/global.dart';
 import 'package:untitled1/pages/Intro-pages/introPage_1.dart';
 import 'package:untitled1/pages/Intro-pages/introPage_2.dart';
 import 'package:untitled1/pages/Intro-pages/introPage_3.dart';
@@ -22,8 +23,8 @@ class _onBoardingScreenState extends State<onBoarding> {
   //Keep Track if we are on the last page or not
   bool onLastpage = false;
 
-  storedinfo()async{
-    int isViewed =  0;
+  storedinfo() async {
+    int isViewed = 0;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('onBoard', isViewed);
   }
@@ -74,7 +75,9 @@ class _onBoardingScreenState extends State<onBoarding> {
                         ))),
 
                 SmoothPageIndicator(
-                    controller: _onBoardingcontroller, count: 4),
+                    effect: SlideEffect(activeDotColor: appcolors.orangeAccent),
+                    controller: _onBoardingcontroller,
+                    count: 4),
 
                 //Button to next/Done
                 if (onLastpage)
@@ -112,8 +115,13 @@ class _onBoardingScreenState extends State<onBoarding> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(15)),
-
-                          child: Text("Next", style: TextStyle(color: Color(0xffc1aa6a), fontSize: 16, fontWeight: FontWeight.bold),))),
+                          child: Text(
+                            "Next",
+                            style: TextStyle(
+                                color: Color(0xffc1aa6a),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ))),
               ],
             ))
       ],
