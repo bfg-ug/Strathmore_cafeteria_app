@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:untitled1/global.dart';
-import 'package:untitled1/pages/navigation-bar%20pages/chat-page.dart';
 import 'package:untitled1/pages/navigation-bar%20pages/home-page.dart';
-import 'package:untitled1/pages/navigation-bar%20pages/library-page.dart';
+import 'package:untitled1/pages/navigation-bar%20pages/History-page.dart';
 import 'package:untitled1/pages/navigation-bar%20pages/search-page.dart';
 import 'package:untitled1/pages/profile-page.dart';
 
@@ -15,17 +14,13 @@ class dashboard extends StatefulWidget {
 class dashboardState extends State<dashboard> {
   int myIndex = 0;
 
-  final List<Widget> navbar_pages = [
-    homepage(),
-    searchpage(),
-    librarypage(),
-    chatpage()
-  ];
+  final List<Widget> navbar_pages = [homepage(), searchpage(), historypage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leadingWidth: 100,
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: appcolors.backgroundColor,
           elevation: 0,
@@ -36,27 +31,13 @@ class dashboardState extends State<dashboard> {
                 bottomLeft: Radius.circular(20)),
           ),
 
-          leading: Builder(
-            builder: (BuildContext context) {
-              return Padding(
-                padding: const EdgeInsets.all(0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return profile();
-                    }));
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Container(
-                      width: 100,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              );
-            },
+          leading: Padding(
+            padding: const EdgeInsets.all(10),
+            child: ProfilePicture(
+              name: 'Fareed Matovu',
+              radius: 40,
+              fontsize: 21,
+            ),
           ),
 
           // Profile image

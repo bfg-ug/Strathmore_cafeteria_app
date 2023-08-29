@@ -4,17 +4,15 @@ import 'package:untitled1/ui%20Components/textfield.dart';
 
 import '../../ui Components/square-tile.dart';
 
-class searchpage extends StatefulWidget{
+class searchpage extends StatefulWidget {
   @override
   State<searchpage> createState() => _searchpageState();
 }
 
 class _searchpageState extends State<searchpage> {
-
-  final List _card =["Hello","Hello","Hello","Hello"];
-  final List author =["Hello","Hello","Hello","Hello"];
-  final List title =["Hello","Hello","Hello","Hello"];
-
+  final List _card = ["Hello", "Hello", "Hello", "Hello"];
+  final List author = ["Hello", "Hello", "Hello", "Hello"];
+  final List title = ["Hello", "Hello", "Hello", "Hello"];
 
   @override
   Widget build(BuildContext context) {
@@ -25,28 +23,21 @@ class _searchpageState extends State<searchpage> {
           child: ListView(
             children: [
               SizedBox(height: 25),
-              textfield(hintText: "Search", obscureText: false),
-
-              SizedBox(height: 25),
-              Text("Popular courses", style: GoogleFonts.jost(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20
-              ),),
-
-              Container(
-                height: 200,
-                child: ListView.builder(itemCount: _card.length,scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index){
-                      return squareTile(author: author[index], title: title[index],);
-                    }
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 150),
+                child: Text(
+                  "Search",
+                  style: GoogleFonts.poppins(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
-              
+              SizedBox(height: 25),
+              textfield(hintText: "Search", obscureText: false),
             ],
           ),
         ),
-
-
       ),
     );
   }
