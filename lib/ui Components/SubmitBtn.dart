@@ -12,19 +12,15 @@ class submitBtn extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(20),
-        margin: EdgeInsets.symmetric(horizontal: 30),
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-            end:  Alignment.centerRight,
-            colors: [
-          Color(0xffc1aa6a),
-          Color(0xffb9b5a8)
-        ]),
-        borderRadius:BorderRadius.circular(15) ),
-        child:  Center(
-          child: Text(btnText, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+            color: Color(0xffFB8904), borderRadius: BorderRadius.circular(30)),
+        child: Center(
+          child: Text(
+            btnText,
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
           ),
         ),
       ),

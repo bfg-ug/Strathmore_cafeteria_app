@@ -6,23 +6,21 @@ import 'package:untitled1/pages/onBoarding.dart';
 int? isViewed;
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isViewed = prefs.getInt('onBoard');
   runApp(const MyApp());
-
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
 // when the app starts it will start from the deignated page home
   @override
-Widget build(BuildContext context){
-    return  MaterialApp(
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:isViewed !=0 ? onBoarding(): Splashscreen(),
+      home: isViewed != 0 ? onBoarding() : Splashscreen(),
     );
   }
 }
