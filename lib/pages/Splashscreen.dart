@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/pages/Login.dart';
+import 'package:STC/pages/Login.dart';
 
 class Splashscreen extends StatelessWidget {
   Splashscreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled1/ui%20Components/square-tile.dart';
-import 'package:untitled1/ui%20Components/vertical%20Rectangular%20tile.dart';
+import 'package:STC/ui%20Components/square-tile.dart';
+import 'package:STC/ui%20Components/vertical%20Rectangular%20tile.dart';
 
 class homepage extends StatefulWidget {
   @override

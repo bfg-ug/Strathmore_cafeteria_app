@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:untitled1/global.dart';
-import 'package:untitled1/pages/Intro-pages/introPage_1.dart';
-import 'package:untitled1/pages/Intro-pages/introPage_2.dart';
-import 'package:untitled1/pages/Intro-pages/introPage_3.dart';
-import 'package:untitled1/pages/Login.dart';
+import 'package:STC/global.dart';
+import 'package:STC/pages/Intro-pages/introPage_1.dart';
+import 'package:STC/pages/Intro-pages/introPage_2.dart';
+import 'package:STC/pages/Intro-pages/introPage_3.dart';
+import 'package:STC/pages/Login.dart';
 
 import 'Intro-pages/introPage_4.dart';
 

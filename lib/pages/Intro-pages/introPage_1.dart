@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:untitled1/global.dart';
+import 'package:STC/global.dart';
 
 class introPage_1 extends StatelessWidget {
   @override

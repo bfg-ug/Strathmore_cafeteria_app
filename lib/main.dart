@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled1/pages/Splashscreen.dart';
-import 'package:untitled1/pages/onBoarding.dart';
+import 'package:STC/pages/Splashscreen.dart';
+import 'package:STC/pages/onBoarding.dart';
 
 int? isViewed;
 

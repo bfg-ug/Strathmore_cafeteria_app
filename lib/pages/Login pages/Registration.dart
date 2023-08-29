@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/global.dart';
-import 'package:untitled1/pages/Login.dart';
-import 'package:untitled1/pages/dashboard.dart';
-import 'package:untitled1/pages/Login%20pages/Forgot_password.dart';
-import 'package:untitled1/ui%20Components/SubmitBtn.dart';
-import 'package:untitled1/ui%20Components/rectangular-tile.dart';
-import 'package:untitled1/ui%20Components/textfield.dart';
+import 'package:STC/global.dart';
+import 'package:STC/pages/Login.dart';
+import 'package:STC/pages/dashboard.dart';
+import 'package:STC/pages/Login%20pages/Forgot_password.dart';
+import 'package:STC/ui%20Components/SubmitBtn.dart';
+import 'package:STC/ui%20Components/rectangular-tile.dart';
+import 'package:STC/ui%20Components/textfield.dart';
 
 class register extends StatefulWidget {
   register({super.key});

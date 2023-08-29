@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/global.dart';
-import 'package:untitled1/pages/Login.dart';
-import 'package:untitled1/ui%20Components/SubmitBtn.dart';
-import 'package:untitled1/ui%20Components/textfield.dart';
+import 'package:STC/global.dart';
+import 'package:STC/pages/Login.dart';
+import 'package:STC/ui%20Components/SubmitBtn.dart';
+import 'package:STC/ui%20Components/textfield.dart';
 
 class resetPassword extends StatefulWidget {
   @override

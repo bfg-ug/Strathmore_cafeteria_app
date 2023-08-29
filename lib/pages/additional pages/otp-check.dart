@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/global.dart';
-import 'package:untitled1/pages/additional%20pages/password-reset.dart';
-import 'package:untitled1/ui%20Components/SubmitBtn.dart';
-import 'package:untitled1/ui%20Components/textfield.dart';
+import 'package:STC/global.dart';
+import 'package:STC/pages/additional%20pages/password-reset.dart';
+import 'package:STC/ui%20Components/SubmitBtn.dart';
+import 'package:STC/ui%20Components/textfield.dart';
 
 class otpCheck extends StatefulWidget {
   @override

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
-import 'package:untitled1/global.dart';
-import 'package:untitled1/pages/navigation-bar%20pages/home-page.dart';
-import 'package:untitled1/pages/navigation-bar%20pages/History-page.dart';
-import 'package:untitled1/pages/navigation-bar%20pages/search-page.dart';
-import 'package:untitled1/pages/profile-page.dart';
+import 'package:STC/global.dart';
+import 'package:STC/pages/navigation-bar%20pages/home-page.dart';
+import 'package:STC/pages/navigation-bar%20pages/History-page.dart';
+import 'package:STC/pages/navigation-bar%20pages/search-page.dart';
+import 'package:STC/pages/profile-page.dart';
 
 class dashboard extends StatefulWidget {
   @override
