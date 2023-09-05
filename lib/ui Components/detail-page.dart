@@ -1,23 +1,26 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:STC/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'SubmitBtn.dart';
+import 'square-tile.dart';
 
-class verticalTile extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   final String title;
   final int price;
   final String description;
-  int quantity = 1;
 
-  verticalTile({
-    required this.title,
-    required this.price,
-    required this.description,
-  });
+  DetailScreen(
+      {required this.title, required this.price, required this.description});
+
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  int quantity = 1;
+  int price = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,7 @@ class verticalTile extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 35),
-                            child: Text(title,
+                            child: Text("title",
                                 style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
@@ -68,7 +71,7 @@ class verticalTile extends StatelessWidget {
                           SizedBox(height: 25),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 35),
-                            child: Text(description,
+                            child: Text("hi",
                                 style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
@@ -139,8 +142,5 @@ class verticalTile extends StatelessWidget {
             ),
           ],
         ));
-    ;
   }
-
-  void setState(Null Function() param0) {}
 }
