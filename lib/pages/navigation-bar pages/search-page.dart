@@ -12,7 +12,7 @@ class searchpage extends StatefulWidget {
 }
 
 class _searchpageState extends State<searchpage> {
-  List<Map<String, dynamic>> _items = [
+  List<Map<String, dynamic>> all_items = [
     {
       "id": 1,
       "name": "Chicken",
@@ -66,7 +66,7 @@ class _searchpageState extends State<searchpage> {
 
   @override
   void initState() {
-    found_items = _items;
+    found_items = all_items;
     super.initState();
   }
 
@@ -74,9 +74,9 @@ class _searchpageState extends State<searchpage> {
     List<Map<String, dynamic>> results = [];
 
     if (enteredKeyword.isEmpty) {
-      results = _items;
+      results = all_items;
     } else {
-      results = _items
+      results = all_items
           .where((user) =>
               user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
@@ -141,13 +141,14 @@ class _searchpageState extends State<searchpage> {
                         return squareTile(
                           item: found_items[index]["name"].toString(),
                           onTap: openContainer,
+                          price: found_items[index]["price"].toString(),
                         );
                       },
                       openBuilder: (BuildContext_, VoidCallback) {
                         return DetailScreen(
-                          title: _items[index]["name"],
-                          price: _items[index]["price"],
-                          description: _items[index]["description"],
+                          title: all_items[index]["name"],
+                          price: all_items[index]["price"],
+                          description: all_items[index]["description"],
                         );
                       },
                     ),

@@ -53,30 +53,53 @@ class _DetailScreenState extends State<DetailScreen> {
                     child: Container(
                       width: 500,
                       color: appcolors.backgroundColor,
-                      child: ListView(
-                        physics: NeverScrollableScrollPhysics(),
+                      child: Column(
                         children: [
                           SizedBox(
                             height: 25,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 35),
-                            child: Text("title",
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 25,
-                                )),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset("lib/images/star.svg"),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Text(
+                                      "5.0",
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                  Text("title",
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 20,
+                                      )),
+                                ],
+                              ),
+                            ),
                           ),
                           SizedBox(height: 25),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 35),
-                            child: Text("hi",
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                )),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, corrupti quos. Numquam aspernatur, quibusdam doloribus natus dolor ullam exercitationem optio.",
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                  )),
+                            ),
                           ),
                           SizedBox(height: 50),
                           Row(
@@ -117,20 +140,20 @@ class _DetailScreenState extends State<DetailScreen> {
                                   color: appcolors.orangeAccent,
                                 ),
                               ),
-                              Text(
-                                "Ksh: ",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20, color: Colors.white),
-                              ),
-                              Text(price.toString(),
+                              Text("Ksh: " + price.toString(),
                                   style: GoogleFonts.poppins(
                                       fontSize: 20, color: Colors.white)),
                             ],
                           ),
-                          SizedBox(height: 50),
-                          submitBtn(
-                            onTap: () {},
-                            btnText: 'Add to Cart',
+                          SizedBox(
+                            height: 24,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: submitBtn(
+                              onTap: () {},
+                              btnText: 'Add to Cart',
+                            ),
                           ),
                           SizedBox(
                             height: 50,

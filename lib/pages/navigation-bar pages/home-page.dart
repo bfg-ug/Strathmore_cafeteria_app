@@ -13,7 +13,7 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  List<Map<String, dynamic>> _items = [
+  List<Map<String, dynamic>> popular_items = [
     {
       "id": 1,
       "name": "Chicken",
@@ -54,9 +54,8 @@ class _homepageState extends State<homepage> {
         child: Column(
           children: [
             // menu
-            SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 150),
+            Align(
+              alignment: Alignment.center,
               child: Text(
                 "Menu",
                 style: GoogleFonts.poppins(
@@ -69,13 +68,16 @@ class _homepageState extends State<homepage> {
             // Todays offers
             SizedBox(height: 25),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                "Today's offer",
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 25,
-                    color: Colors.white),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Today's offer",
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 25,
+                      color: Colors.white),
+                ),
               ),
             ),
             Container(
@@ -92,41 +94,45 @@ class _homepageState extends State<homepage> {
 
             //Popular Items
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: Text(
-                "Popular",
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 25,
-                    color: Colors.white),
-                textAlign: TextAlign.end,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Popular",
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 25,
+                      color: Colors.white),
+                  textAlign: TextAlign.end,
+                ),
               ),
             ),
             Container(
               height: 400,
               child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: _items.length,
+                itemCount: popular_items.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10),
                     child: OpenContainer(
                       transitionDuration: Duration(milliseconds: 400),
                       transitionType: ContainerTransitionType.fade,
                       closedBuilder:
                           (BuildContext _, VoidCallback openContainer) {
                         return squareTile(
-                          item: _items[index]["id"].toString(),
+                          item: popular_items[index]["name"].toString(),
                           onTap: openContainer,
+                          price: popular_items[index]["price"].toString(),
                         );
                       },
                       openBuilder: (BuildContext_, VoidCallback) {
                         return DetailScreen(
-                          title: _items[index]["name"],
-                          price: _items[index]["price"],
-                          description: _items[index]["description"],
+                          title: popular_items[index]["name"],
+                          price: popular_items[index]["price"],
+                          description: popular_items[index]["description"],
                         );
                       },
                     ),
