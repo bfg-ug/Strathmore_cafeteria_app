@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:STC/ui%20Components/textfield.dart';
 
+import '../../model/food.dart';
 import '../../ui Components/detail-page.dart';
 import '../../ui Components/square-tile.dart';
 
@@ -12,57 +13,29 @@ class searchpage extends StatefulWidget {
 }
 
 class _searchpageState extends State<searchpage> {
-  List<Map<String, dynamic>> all_items = [
-    {
-      "id": 1,
-      "name": "Chicken",
-      "price": 200,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 2,
-      "name": "beef",
-      "price": 100,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 3,
-      "name": "goat",
-      "price": 2200,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 4,
-      "name": "Lamb",
-      "price": 1100,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 5,
-      "name": "Fish",
-      "price": 200,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 6,
-      "name": "Calamary",
-      "price": 100,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 7,
-      "name": "pork",
-      "price": 2200,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 8,
-      "name": "Hippo",
-      "price": 1100,
-      "description": "Finger licking good"
-    },
+  List<Food> all_items = [
+    Food(
+        price: "1200",
+        name: "Beef",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: "2000",
+        name: "Chicken",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: "1500",
+        name: "Goat",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: "1400",
+        name: "Fish",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
   ];
-  List<Map<String, dynamic>> found_items = [];
+  List<Food> found_items = [];
 
   @override
   void initState() {
@@ -74,17 +47,18 @@ class _searchpageState extends State<searchpage> {
     List<Map<String, dynamic>> results = [];
 
     if (enteredKeyword.isEmpty) {
-      results = all_items;
+      results = all_items.cast<Map<String, dynamic>>();
     } else {
       results = all_items
           .where((user) =>
-              user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
+              user.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .cast<Map<String, dynamic>>()
           .toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
 
     setState(() {
-      found_items = results;
+      found_items = results.cast<Food>();
     });
   }
 
@@ -96,8 +70,8 @@ class _searchpageState extends State<searchpage> {
         child: Column(
           children: [
             SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 150),
+            Align(
+              alignment: Alignment.center,
               child: Text(
                 "Search",
                 style: GoogleFonts.poppins(
@@ -129,7 +103,7 @@ class _searchpageState extends State<searchpage> {
               child: GridView.builder(
                 itemCount: found_items.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
+                    childAspectRatio: (1 / 1.15), crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -139,16 +113,13 @@ class _searchpageState extends State<searchpage> {
                       closedBuilder:
                           (BuildContext _, VoidCallback openContainer) {
                         return squareTile(
-                          item: found_items[index]["name"].toString(),
                           onTap: openContainer,
-                          price: found_items[index]["price"].toString(),
+                          food: all_items[index],
                         );
                       },
                       openBuilder: (BuildContext_, VoidCallback) {
                         return DetailScreen(
-                          title: all_items[index]["name"],
-                          price: all_items[index]["price"],
-                          description: all_items[index]["description"],
+                          food: all_items[index],
                         );
                       },
                     ),

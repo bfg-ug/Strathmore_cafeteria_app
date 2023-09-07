@@ -12,8 +12,8 @@ class historypage extends StatelessWidget {
         child: ListView(
           children: [
             SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 110),
+            Align(
+              alignment: Alignment.center,
               child: Text(
                 "Your orders",
                 style: GoogleFonts.poppins(

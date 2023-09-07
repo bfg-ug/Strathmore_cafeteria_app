@@ -6,6 +6,7 @@ import 'package:STC/pages/Login%20pages/Forgot_password.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
 import 'package:STC/ui%20Components/rectangular-tile.dart';
 import 'package:STC/ui%20Components/textfield.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   Login({super.key});
@@ -35,23 +36,24 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 100),
               //Logo
               Image(
                 image: AssetImage('lib/images/strathmore.png'),
-                height: 200,
+                height: 150,
               ),
 
               SizedBox(height: 25),
 
               Text(
                 "Login",
-                style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                    fontFamily: 'Poppins'),
+                style: GoogleFonts.poppins(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),
               ),
 
               SizedBox(height: 50),
@@ -101,33 +103,35 @@ class _LoginState extends State<Login> {
 
               SizedBox(height: 25),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60),
-                child: Row(
-                  children: [
-                    Text("Do you have an account?",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700)),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return register();
-                        }));
-                      },
-                      child: Text(
-                        "Create Account",
-                        style: TextStyle(
-                            color: appcolors.orangeAccent,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    )
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Do you have an account?",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return register();
+                      }));
+                    },
+                    child: Text(
+                      "Create Account",
+                      style: TextStyle(
+                          color: appcolors.orangeAccent,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  )
+                ],
               ),
+
+              SizedBox(
+                height: 50,
+              )
             ],
           ),
         ),

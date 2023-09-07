@@ -27,6 +27,7 @@ dependencies:
   percent_indicator: ^4.2.3
   animations: ^2.0.8
   flutter_svg: ^2.0.5
+  provider:
 
 dev_dependencies:
   flutter_test:

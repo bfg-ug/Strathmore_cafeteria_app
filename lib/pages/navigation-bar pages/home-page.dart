@@ -2,8 +2,9 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:STC/ui%20Components/square-tile.dart';
-import 'package:STC/ui%20Components/vertical%20Rectangular%20tile.dart';
-
+import 'package:provider/provider.dart';
+import '../../model/food.dart';
+import '../../model/shop.dart';
 import '../../ui Components/detail-page.dart';
 import '../../ui Components/rectangular-tile.dart';
 
@@ -13,31 +14,27 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  List<Map<String, dynamic>> popular_items = [
-    {
-      "id": 1,
-      "name": "Chicken",
-      "price": 200,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 2,
-      "name": "beef",
-      "price": 100,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 3,
-      "name": "goat",
-      "price": 2200,
-      "description": "Finger licking good"
-    },
-    {
-      "id": 4,
-      "name": "Lamb",
-      "price": 1100,
-      "description": "Finger licking good"
-    },
+  final List<Food> popular_items = [
+    Food(
+        price: "1200",
+        name: "Beef",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: "2000",
+        name: "Chicken",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: "1500",
+        name: "Goat",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: "1400",
+        name: "Fish",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
   ];
 
   final List _banner = [
@@ -113,7 +110,7 @@ class _homepageState extends State<homepage> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: popular_items.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
+                    childAspectRatio: (1 / 1.15), crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(10),
@@ -123,16 +120,13 @@ class _homepageState extends State<homepage> {
                       closedBuilder:
                           (BuildContext _, VoidCallback openContainer) {
                         return squareTile(
-                          item: popular_items[index]["name"].toString(),
                           onTap: openContainer,
-                          price: popular_items[index]["price"].toString(),
+                          food: popular_items[index],
                         );
                       },
                       openBuilder: (BuildContext_, VoidCallback) {
                         return DetailScreen(
-                          title: popular_items[index]["name"],
-                          price: popular_items[index]["price"],
-                          description: popular_items[index]["description"],
+                          food: popular_items[index],
                         );
                       },
                     ),

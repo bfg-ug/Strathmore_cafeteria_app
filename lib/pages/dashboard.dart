@@ -21,7 +21,6 @@ class dashboardState extends State<dashboard> {
     return Scaffold(
         appBar: AppBar(
           leadingWidth: 100,
-          iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: appcolors.backgroundColor,
           elevation: 0,
           toolbarHeight: 80,
@@ -35,8 +34,8 @@ class dashboardState extends State<dashboard> {
             padding: const EdgeInsets.all(10),
             child: ProfilePicture(
               name: 'Fareed Matovu',
-              radius: 40,
-              fontsize: 21,
+              radius: 15,
+              fontsize: 15,
             ),
           ),
 
@@ -45,9 +44,11 @@ class dashboardState extends State<dashboard> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: IconButton(
-                iconSize: 40,
+                iconSize: 30,
                 color: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cart');
+                },
                 icon: const Icon(Icons.shopping_cart_outlined),
               ),
             )

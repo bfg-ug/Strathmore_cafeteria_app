@@ -10,12 +10,13 @@ class rectangularTile extends StatelessWidget {
     // TODO: implement build
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ClipRRect(
+      child: Material(
+        elevation: 20,
         borderRadius: BorderRadius.circular(20),
-        child: Material(
-          elevation: 50,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
           child: Container(
-            width: 350,
+            width: 300,
             child: Image.asset(
               imagePath,
               fit: BoxFit.cover,

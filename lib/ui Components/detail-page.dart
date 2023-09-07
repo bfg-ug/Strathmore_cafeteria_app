@@ -2,25 +2,57 @@ import 'package:STC/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../model/food.dart';
+import '../model/shop.dart';
 import 'SubmitBtn.dart';
-import 'square-tile.dart';
 
 class DetailScreen extends StatefulWidget {
-  final String title;
-  final int price;
-  final String description;
+  final Food food;
 
-  DetailScreen(
-      {required this.title, required this.price, required this.description});
+  DetailScreen({super.key, required this.food});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  int quantity = 1;
-  int price = 100;
+  int quantity = 0;
+
+  void increaseQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void decreaseQuantity() {
+    if (quantity > 0) {
+      setState(() {
+        quantity--;
+      });
+    }
+  }
+
+  void addToCart() {
+    if (quantity > 0) {
+      final Shop = context.read<shop>();
+      Shop.addtoCart(widget.food, quantity);
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                content: Text("Successfully added to cart"),
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.done))
+                ],
+              ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +70,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 height: 400,
                 child: Container(
                   child: Image.asset(
-                    "lib/images/food.jpg",
+                    widget.food.imagepath,
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -69,7 +101,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
                                     child: Text(
-                                      "5.0",
+                                      widget.food.rating,
                                       style: GoogleFonts.poppins(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w400,
@@ -77,7 +109,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                       ),
                                     ),
                                   ),
-                                  Text("title",
+                                  Text(widget.food.name,
                                       style: GoogleFonts.poppins(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600,
@@ -101,16 +133,12 @@ class _DetailScreenState extends State<DetailScreen> {
                                   )),
                             ),
                           ),
-                          SizedBox(height: 50),
+                          SizedBox(height: 25),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    quantity++;
-                                  });
-                                },
+                                onTap: increaseQuantity,
                                 child: SvgPicture.asset(
                                   "lib/icons/plus.svg",
                                   height: 30,
@@ -122,17 +150,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   style: GoogleFonts.poppins(
                                       fontSize: 20, color: Colors.white)),
                               GestureDetector(
-                                onTap: () {
-                                  if (quantity < 0) {
-                                    setState(() {
-                                      quantity = 0;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      quantity--;
-                                    });
-                                  }
-                                },
+                                onTap: decreaseQuantity,
                                 child: SvgPicture.asset(
                                   "lib/icons/minus.svg",
                                   height: 30,
@@ -140,7 +158,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   color: appcolors.orangeAccent,
                                 ),
                               ),
-                              Text("Ksh: " + price.toString(),
+                              Text("Ksh: " + widget.food.price,
                                   style: GoogleFonts.poppins(
                                       fontSize: 20, color: Colors.white)),
                             ],
@@ -151,7 +169,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: submitBtn(
-                              onTap: () {},
+                              onTap: addToCart,
                               btnText: 'Add to Cart',
                             ),
                           ),
