@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../ui Components/textfield.dart';
 
 class historypage extends StatelessWidget {
+  const historypage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,7 +12,7 @@ class historypage extends StatelessWidget {
       child: Container(
         child: ListView(
           children: [
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Align(
               alignment: Alignment.center,
               child: Text(
@@ -22,7 +23,7 @@ class historypage extends StatelessWidget {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Image.asset('lib/images/empty-cart.png'),
           ],
         ),

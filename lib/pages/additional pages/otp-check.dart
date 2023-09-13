@@ -5,6 +5,8 @@ import 'package:STC/ui%20Components/SubmitBtn.dart';
 import 'package:STC/ui%20Components/textfield.dart';
 
 class otpCheck extends StatefulWidget {
+  const otpCheck({super.key});
+
   @override
   State<otpCheck> createState() => _otpCheckState();
 }
@@ -16,7 +18,7 @@ class _otpCheckState extends State<otpCheck> {
   //Reset password function
   void verifyOTP() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return resetPassword();
+      return const resetPassword();
     }));
   }
 
@@ -26,7 +28,7 @@ class _otpCheckState extends State<otpCheck> {
       appBar: AppBar(
         backgroundColor: appcolors.backgroundColor,
         elevation: 0,
-        leading: BackButton(),
+        leading: const BackButton(),
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: appcolors.backgroundColor,
@@ -34,14 +36,14 @@ class _otpCheckState extends State<otpCheck> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               //Logo
-              Image(image: AssetImage('lib/images/strathmore.png')),
+              const Image(image: AssetImage('lib/images/strathmore.png')),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   "Enter OTP",
                   style: TextStyle(
@@ -52,17 +54,17 @@ class _otpCheckState extends State<otpCheck> {
                 ),
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // input for user email
               textfield(
                   controller: emailController,
                   hintText: '',
                   obscureText: false),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               //Submit button
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               submitBtn(
                 onTap: verifyOTP,
                 btnText: 'Verify',

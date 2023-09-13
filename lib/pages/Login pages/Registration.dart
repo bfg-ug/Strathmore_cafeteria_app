@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:STC/global.dart';
 import 'package:STC/pages/Login.dart';
-import 'package:STC/pages/dashboard.dart';
-import 'package:STC/pages/Login%20pages/Forgot_password.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
-import 'package:STC/ui%20Components/rectangular-tile.dart';
 import 'package:STC/ui%20Components/textfield.dart';
 
 class register extends StatefulWidget {
-  register({super.key});
+  const register({super.key});
 
   @override
   State<register> createState() => _registerState();
@@ -23,7 +20,7 @@ class _registerState extends State<register> {
   //Sign user in
   void createAccount() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return Login();
+      return const Login();
     }));
   }
 
@@ -36,16 +33,16 @@ class _registerState extends State<register> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               //Logo
-              Image(
+              const Image(
                 image: AssetImage('lib/images/strathmore.png'),
                 height: 200,
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-              Text(
+              const Text(
                 "Registration",
                 style: TextStyle(
                     fontSize: 35,
@@ -54,7 +51,7 @@ class _registerState extends State<register> {
                     fontFamily: 'Poppins'),
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               //Text input for email
               textfield(
@@ -62,7 +59,7 @@ class _registerState extends State<register> {
                   hintText: 'Name',
                   obscureText: false),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               //Text input for email
               textfield(
@@ -70,7 +67,7 @@ class _registerState extends State<register> {
                   hintText: 'Registration number',
                   obscureText: false),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // input for password
               textfield(
@@ -78,7 +75,7 @@ class _registerState extends State<register> {
                   hintText: 'Password',
                   obscureText: true),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // input for password
               textfield(
@@ -86,19 +83,19 @@ class _registerState extends State<register> {
                   hintText: 'Re-enter Password',
                   obscureText: true),
               //Login button
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               submitBtn(
                 onTap: createAccount,
                 btnText: 'Create Account',
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 80),
                 child: Row(
                   children: [
-                    Text("Already have an account? ",
+                    const Text("Already have an account? ",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -107,7 +104,7 @@ class _registerState extends State<register> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return Login();
+                          return const Login();
                         }));
                       },
                       child: Text(

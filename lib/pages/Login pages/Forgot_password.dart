@@ -5,7 +5,7 @@ import 'package:STC/ui%20Components/SubmitBtn.dart';
 import 'package:STC/ui%20Components/textfield.dart';
 
 class Forgot_password extends StatefulWidget {
-  Forgot_password({super.key});
+  const Forgot_password({super.key});
 
   @override
   State<Forgot_password> createState() => _Forgot_passwordState();
@@ -18,7 +18,7 @@ class _Forgot_passwordState extends State<Forgot_password> {
   //Reset password function
   void resetPassword() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return otpCheck();
+      return const otpCheck();
     }));
   }
 
@@ -28,7 +28,7 @@ class _Forgot_passwordState extends State<Forgot_password> {
       appBar: AppBar(
         backgroundColor: appcolors.backgroundColor,
         elevation: 0,
-        leading: BackButton(),
+        leading: const BackButton(),
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: appcolors.backgroundColor,
@@ -36,14 +36,14 @@ class _Forgot_passwordState extends State<Forgot_password> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               //Logo
-              Image(image: AssetImage('lib/images/strathmore.png')),
+              const Image(image: AssetImage('lib/images/strathmore.png')),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   "Reset password",
                   style: TextStyle(
@@ -54,10 +54,10 @@ class _Forgot_passwordState extends State<Forgot_password> {
                 ),
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Text(
                   "Enter the email associated with your account and we 'll send email with instructions to reset your password",
                   style: TextStyle(
@@ -65,17 +65,17 @@ class _Forgot_passwordState extends State<Forgot_password> {
                 ),
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // input for user email
               textfield(
                   controller: emailController,
                   hintText: 'example@example.com',
                   obscureText: false),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               //Submit button
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               submitBtn(
                 onTap: resetPassword,
                 btnText: 'Send OTP',

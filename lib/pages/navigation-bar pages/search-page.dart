@@ -1,13 +1,14 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:STC/ui%20Components/textfield.dart';
 
 import '../../model/food.dart';
 import '../../ui Components/detail-page.dart';
 import '../../ui Components/square-tile.dart';
 
 class searchpage extends StatefulWidget {
+  const searchpage({super.key});
+
   @override
   State<searchpage> createState() => _searchpageState();
 }
@@ -69,7 +70,6 @@ class _searchpageState extends State<searchpage> {
       child: Expanded(
         child: Column(
           children: [
-            SizedBox(height: 25),
             Align(
               alignment: Alignment.center,
               child: Text(
@@ -80,7 +80,7 @@ class _searchpageState extends State<searchpage> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             TextField(
               onChanged: (value) => runFilter(value),
               decoration: InputDecoration(
@@ -88,7 +88,7 @@ class _searchpageState extends State<searchpage> {
                   borderSide: BorderSide(color: Colors.black),
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
@@ -98,17 +98,20 @@ class _searchpageState extends State<searchpage> {
                 hintStyle: TextStyle(color: Colors.grey[400]),
               ),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Expanded(
               child: GridView.builder(
                 itemCount: found_items.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: (1 / 1.15), crossAxisCount: 2),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: OpenContainer(
-                      transitionDuration: Duration(milliseconds: 400),
+                      closedElevation: 20,
+                      closedShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      transitionDuration: const Duration(milliseconds: 400),
                       transitionType: ContainerTransitionType.fade,
                       closedBuilder:
                           (BuildContext _, VoidCallback openContainer) {

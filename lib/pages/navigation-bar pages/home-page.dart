@@ -2,13 +2,13 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:STC/ui%20Components/square-tile.dart';
-import 'package:provider/provider.dart';
 import '../../model/food.dart';
-import '../../model/shop.dart';
 import '../../ui Components/detail-page.dart';
 import '../../ui Components/rectangular-tile.dart';
 
 class homepage extends StatefulWidget {
+  const homepage({super.key});
+
   @override
   State<homepage> createState() => _homepageState();
 }
@@ -37,10 +37,17 @@ class _homepageState extends State<homepage> {
         rating: "5"),
   ];
 
-  final List _banner = [
-    "lib/images/food.jpg",
-    "lib/images/food.jpg",
-    "lib/images/burger 3.png"
+  final List<Food> todays_Offers = [
+    Food(
+        price: "1200",
+        name: "Two for one special",
+        imagepath: "lib/images/burger 3.png",
+        rating: "5"),
+    Food(
+        price: "2000",
+        name: "Ugandan matooke",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
   ];
 
   @override
@@ -63,7 +70,7 @@ class _homepageState extends State<homepage> {
             ),
 
             // Todays offers
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Align(
@@ -77,17 +84,40 @@ class _homepageState extends State<homepage> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: 150,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: _banner.length,
+                itemCount: todays_Offers.length,
                 itemBuilder: (context, index) {
-                  return rectangularTile(imagePath: _banner[index]);
+                  return Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: OpenContainer(
+                      closedElevation: 10,
+                      closedShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      transitionDuration: const Duration(milliseconds: 400),
+                      transitionType: ContainerTransitionType.fade,
+                      closedBuilder:
+                          (BuildContext _, VoidCallback openContainer) {
+                        return rectangularTile(
+                          food: todays_Offers[index],
+                          onTap: openContainer,
+                        );
+                      },
+                      openBuilder: (BuildContext_, VoidCallback) {
+                        return DetailScreen(
+                          food: todays_Offers[index],
+                        );
+                      },
+                    ),
+                  );
+
+                  //rectangularTile(imagePath: _banner[index]);
                 },
               ),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
 
             //Popular Items
             Padding(
@@ -104,18 +134,21 @@ class _homepageState extends State<homepage> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: 400,
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: popular_items.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: (1 / 1.15), crossAxisCount: 2),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(10),
                     child: OpenContainer(
-                      transitionDuration: Duration(milliseconds: 400),
+                      closedElevation: 10,
+                      closedShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      transitionDuration: const Duration(milliseconds: 400),
                       transitionType: ContainerTransitionType.fade,
                       closedBuilder:
                           (BuildContext _, VoidCallback openContainer) {

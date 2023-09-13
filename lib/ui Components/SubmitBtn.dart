@@ -9,18 +9,24 @@ class submitBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-            color: Color(0xffFB8904), borderRadius: BorderRadius.circular(30)),
-        child: Center(
-          child: Text(
-            btnText,
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+    return Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(15),
+          decoration: BoxDecoration(
+              color: const Color(0xffFB8904),
+              borderRadius: BorderRadius.circular(30)),
+          child: Center(
+            child: Text(
+              btnText,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15),
+            ),
           ),
         ),
       ),

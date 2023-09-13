@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:STC/global.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'SubmitBtn.dart';
 
@@ -13,7 +11,7 @@ class verticalTile extends StatelessWidget {
   final String description;
   int quantity = 1;
 
-  verticalTile({
+  verticalTile({super.key, 
     required this.title,
     required this.price,
     required this.description,
@@ -24,14 +22,14 @@ class verticalTile extends StatelessWidget {
     return Scaffold(
         backgroundColor: appcolors.backgroundColor,
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white),
+          iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: appcolors.backgroundColor,
           elevation: 0,
           toolbarHeight: 80,
         ),
         body: Stack(
           children: [
-            Container(
+            SizedBox(
                 height: 400,
                 child: Container(
                   child: Image.asset(
@@ -41,19 +39,19 @@ class verticalTile extends StatelessWidget {
                 )),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
+              child: SizedBox(
                   height: 400,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(52),
                         topRight: Radius.circular(52)),
                     child: Container(
                       width: 500,
                       color: appcolors.backgroundColor,
                       child: ListView(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 25,
                           ),
                           Padding(
@@ -65,7 +63,7 @@ class verticalTile extends StatelessWidget {
                                   fontSize: 25,
                                 )),
                           ),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 35),
                             child: Text(description,
@@ -75,7 +73,7 @@ class verticalTile extends StatelessWidget {
                                   fontSize: 15,
                                 )),
                           ),
-                          SizedBox(height: 50),
+                          const SizedBox(height: 50),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -124,12 +122,12 @@ class verticalTile extends StatelessWidget {
                                       fontSize: 20, color: Colors.white)),
                             ],
                           ),
-                          SizedBox(height: 50),
+                          const SizedBox(height: 50),
                           submitBtn(
                             onTap: () {},
                             btnText: 'Add to Cart',
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 50,
                           )
                         ],
@@ -139,7 +137,6 @@ class verticalTile extends StatelessWidget {
             ),
           ],
         ));
-    ;
   }
 
   void setState(Null Function() param0) {}

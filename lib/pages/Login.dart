@@ -4,12 +4,11 @@ import 'package:STC/pages/Login%20pages/Registration.dart';
 import 'package:STC/pages/dashboard.dart';
 import 'package:STC/pages/Login%20pages/Forgot_password.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
-import 'package:STC/ui%20Components/rectangular-tile.dart';
 import 'package:STC/ui%20Components/textfield.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
-  Login({super.key});
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -24,7 +23,7 @@ class _LoginState extends State<Login> {
   //Sign user in
   void signUserIn() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return dashboard();
+      return const dashboard();
     }));
   }
 
@@ -38,14 +37,14 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
               //Logo
-              Image(
+              const Image(
                 image: AssetImage('lib/images/strathmore.png'),
                 height: 150,
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               Text(
                 "Login",
@@ -56,7 +55,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
 
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
 
               //Text input for email
               textfield(
@@ -64,14 +63,14 @@ class _LoginState extends State<Login> {
                   hintText: 'Email',
                   obscureText: false),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // input for password
               textfield(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               //
               Padding(
@@ -83,10 +82,10 @@ class _LoginState extends State<Login> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return Forgot_password();
+                          return const Forgot_password();
                         }));
                       },
-                      child: Text(
+                      child: const Text(
                         'Forgot Passsword ?',
                         style: TextStyle(color: Colors.grey),
                       ),
@@ -95,18 +94,18 @@ class _LoginState extends State<Login> {
                 ),
               ),
               //Login button
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               submitBtn(
                 onTap: signUserIn,
                 btnText: 'Login',
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Do you have an account?",
+                  const Text("Do you have an account?",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,
@@ -115,7 +114,7 @@ class _LoginState extends State<Login> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return register();
+                        return const register();
                       }));
                     },
                     child: Text(
@@ -129,7 +128,7 @@ class _LoginState extends State<Login> {
                 ],
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 50,
               )
             ],

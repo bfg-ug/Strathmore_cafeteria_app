@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:STC/global.dart';
 
 class introPage_3 extends StatelessWidget {
+  const introPage_3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +12,7 @@ class introPage_3 extends StatelessWidget {
       child: Center(
           child: Column(
         children: [
-          SizedBox(height: 200),
+          const SizedBox(height: 200),
           Stack(
             children: [
               Padding(
@@ -19,15 +20,15 @@ class introPage_3 extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: Container(
-                    color: Color(0xffFDE0D2),
+                    color: const Color(0xffFDE0D2),
                     height: 300,
                     width: 300,
                   ),
                 ),
               ),
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 10),
-                  child: Image(
+                  padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
+                  child: const Image(
                     image: AssetImage('lib/images/pay.png'),
                   )),
             ],

@@ -4,9 +4,10 @@ import 'package:STC/global.dart';
 import 'package:STC/pages/navigation-bar%20pages/home-page.dart';
 import 'package:STC/pages/navigation-bar%20pages/History-page.dart';
 import 'package:STC/pages/navigation-bar%20pages/search-page.dart';
-import 'package:STC/pages/profile-page.dart';
 
 class dashboard extends StatefulWidget {
+  const dashboard({super.key});
+
   @override
   State<dashboard> createState() => dashboardState();
 }
@@ -14,7 +15,7 @@ class dashboard extends StatefulWidget {
 class dashboardState extends State<dashboard> {
   int myIndex = 0;
 
-  final List<Widget> navbar_pages = [homepage(), searchpage(), historypage()];
+  final List<Widget> navbar_pages = [const homepage(), const searchpage(), const historypage()];
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +31,8 @@ class dashboardState extends State<dashboard> {
                 bottomLeft: Radius.circular(20)),
           ),
 
-          leading: Padding(
-            padding: const EdgeInsets.all(10),
+          leading: const Padding(
+            padding: EdgeInsets.all(10),
             child: ProfilePicture(
               name: 'Fareed Matovu',
               radius: 15,
@@ -60,7 +61,7 @@ class dashboardState extends State<dashboard> {
 //Bottom navigation
         bottomNavigationBar: Container(
           child: ClipRRect(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30.0),
               topRight: Radius.circular(30.0),
             ),
@@ -75,9 +76,9 @@ class dashboardState extends State<dashboard> {
               currentIndex: myIndex,
               selectedItemColor: Colors.black,
               unselectedItemColor: Colors.grey,
-              selectedIconTheme: IconThemeData(color: Colors.black),
-              unselectedIconTheme: IconThemeData(color: Colors.grey),
-              items: [
+              selectedIconTheme: const IconThemeData(color: Colors.black),
+              unselectedIconTheme: const IconThemeData(color: Colors.grey),
+              items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
                   label: "Home",

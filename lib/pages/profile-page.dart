@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:STC/ui%20Components/SubmitBtn.dart';
 
 class profile extends StatefulWidget {
+  const profile({super.key});
+
   @override
   State<profile> createState() => _profileState();
 }
@@ -12,14 +13,14 @@ class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
     String school = "Daffodils";
-    String user_email = "example@example.com";
+    String userEmail = "example@example.com";
     return Scaffold(
-      backgroundColor: Color(0xffeae9e5),
+      backgroundColor: const Color(0xffeae9e5),
       appBar: AppBar(
-        backgroundColor: Color(0xffeae9e5),
+        backgroundColor: const Color(0xffeae9e5),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
@@ -30,13 +31,13 @@ class _profileState extends State<profile> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           Center(
             child: Stack(
               fit: StackFit.expand,
               children: [
                 Container(
-                  child: ProfilePicture(
+                  child: const ProfilePicture(
                     name: '',
                     radius: 80,
                     fontsize: 21,

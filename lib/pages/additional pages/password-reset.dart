@@ -5,6 +5,8 @@ import 'package:STC/ui%20Components/SubmitBtn.dart';
 import 'package:STC/ui%20Components/textfield.dart';
 
 class resetPassword extends StatefulWidget {
+  const resetPassword({super.key});
+
   @override
   State<resetPassword> createState() => _resetPasswordState();
 }
@@ -16,7 +18,7 @@ class _resetPasswordState extends State<resetPassword> {
   //Reset password function
   void reset() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return Login();
+      return const Login();
     }));
   }
 
@@ -26,7 +28,7 @@ class _resetPasswordState extends State<resetPassword> {
       appBar: AppBar(
         backgroundColor: appcolors.backgroundColor,
         elevation: 0,
-        leading: BackButton(),
+        leading: const BackButton(),
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: appcolors.backgroundColor,
@@ -34,14 +36,14 @@ class _resetPasswordState extends State<resetPassword> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               //Logo
-              Image(image: AssetImage('lib/images/strathmore.png')),
+              const Image(image: AssetImage('lib/images/strathmore.png')),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   "Reset Password",
                   style: TextStyle(
@@ -52,7 +54,7 @@ class _resetPasswordState extends State<resetPassword> {
                 ),
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // input for user email
               textfield(
@@ -60,7 +62,7 @@ class _resetPasswordState extends State<resetPassword> {
                   hintText: 'Enter new password',
                   obscureText: false),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               // input for user email
               textfield(
@@ -69,7 +71,7 @@ class _resetPasswordState extends State<resetPassword> {
                   obscureText: false),
 
               //Submit button
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               submitBtn(
                 onTap: reset,
                 btnText: 'Reset',

@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:STC/global.dart';
 import 'package:STC/pages/Intro-pages/introPage_1.dart';
 import 'package:STC/pages/Intro-pages/introPage_2.dart';
 import 'package:STC/pages/Intro-pages/introPage_3.dart';
 import 'package:STC/pages/Login.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'Intro-pages/introPage_4.dart';
 
 class onBoarding extends StatefulWidget {
-  onBoarding({Key? key});
+  const onBoarding({super.key, Key? Key});
 
   @override
   _onBoardingScreenState createState() => _onBoardingScreenState();
@@ -18,7 +18,7 @@ class onBoarding extends StatefulWidget {
 
 class _onBoardingScreenState extends State<onBoarding> {
   //controller to keep track of which page we are on
-  PageController _onBoardingcontroller = PageController();
+  final PageController _onBoardingcontroller = PageController();
 
   //Keep Track if we are on the last page or not
   bool onLastpage = false;
@@ -41,7 +41,7 @@ class _onBoardingScreenState extends State<onBoarding> {
               onLastpage = (index == 3);
             });
           },
-          children: [
+          children: const [
             introPage_1(),
             introPage_2(),
             introPage_3(),
@@ -51,7 +51,7 @@ class _onBoardingScreenState extends State<onBoarding> {
 
         //Dot indicator
         Container(
-            alignment: Alignment(0, 0.85),
+            alignment: const Alignment(0, 0.85),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -61,12 +61,12 @@ class _onBoardingScreenState extends State<onBoarding> {
                       _onBoardingcontroller.jumpToPage(3);
                     },
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 20),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15)),
-                        child: Text(
+                        child: const Text(
                           "Skip",
                           style: TextStyle(
                               color: Color(0xffc1aa6a),
@@ -86,16 +86,16 @@ class _onBoardingScreenState extends State<onBoarding> {
                         await storedinfo();
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return Login();
+                          return const Login();
                         }));
                       },
                       child: Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 30, vertical: 20),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(15)),
-                          child: Text(
+                          child: const Text(
                             "Done",
                             style: TextStyle(
                                 color: Color(0xffc1aa6a),
@@ -106,16 +106,16 @@ class _onBoardingScreenState extends State<onBoarding> {
                   GestureDetector(
                       onTap: () {
                         _onBoardingcontroller.nextPage(
-                            duration: Duration(milliseconds: 500),
+                            duration: const Duration(milliseconds: 500),
                             curve: Curves.easeIn);
                       },
                       child: Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 30, vertical: 20),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(15)),
-                          child: Text(
+                          child: const Text(
                             "Next",
                             style: TextStyle(
                                 color: Color(0xffc1aa6a),

@@ -1,7 +1,6 @@
 import 'package:STC/global.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +8,7 @@ import '../../model/food.dart';
 import '../../model/shop.dart';
 
 class cart extends StatefulWidget {
-  cart({super.key});
+  const cart({super.key});
 
   @override
   State<cart> createState() => _cartState();
@@ -25,6 +24,7 @@ class _cartState extends State<cart> {
 
   @override
   Widget build(BuildContext context) {
+    String total = "0";
     return Consumer<shop>(
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
@@ -32,7 +32,7 @@ class _cartState extends State<cart> {
           elevation: 0,
           toolbarHeight: 80,
           centerTitle: true,
-          title: Text("My Cart"),
+          title: const Text("My Cart"),
         ),
         backgroundColor: appcolors.backgroundColor,
         body: Column(
@@ -56,61 +56,69 @@ class _cartState extends State<cart> {
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Material(
-                        elevation: 20,
+                        elevation: 10,
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: appcolors.blueAccent,
                               borderRadius: BorderRadius.circular(20)),
-                          height: 100,
-                          width: 100,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Container(
-                                  height: 90,
-                                  width: 100,
-                                  child:
-                                      Image.asset(foodImage, fit: BoxFit.cover),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      foodName,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700),
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: SizedBox(
+                                        height: 90,
+                                        width: 100,
+                                        child: Image.asset(foodImage,
+                                            fit: BoxFit.cover),
+                                      ),
                                     ),
-                                    Text(
-                                      "Ksh: " + foodPrice,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // food name
+                                        Text(
+                                          foodName,
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 15,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+
+                                        // food price
+                                        Text(
+                                          "Ksh: $foodPrice",
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 15,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+
+                                        // food quantity
+                                        Text("Quantity: $quantity",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700)),
+                                      ],
                                     ),
-                                    Text("Quantity: " + quantity.toString(),
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w700)),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(width: 120),
                               IconButton(
                                   color: Colors.white,
                                   onPressed: () =>
                                       removeFromCart(food, context),
-                                  icon: Icon(Icons.delete))
+                                  icon: const Icon(Icons.delete))
                             ],
                           ),
                         ),
@@ -118,6 +126,8 @@ class _cartState extends State<cart> {
                     );
                   }),
             ),
+
+            // Total row
             Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
@@ -128,7 +138,7 @@ class _cartState extends State<cart> {
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.w700)),
-                  Text("Ksh: 2000",
+                  Text("Ksh: $total",
                       style: GoogleFonts.poppins(
                           fontSize: 20,
                           color: Colors.white,
@@ -136,8 +146,14 @@ class _cartState extends State<cart> {
                 ],
               ),
             ),
-            submitBtn(onTap: () {}, btnText: "Check out"),
-            SizedBox(
+
+            //Checkout Button
+            submitBtn(
+                onTap: () {
+                  Navigator.pushNamed(context, '/paymentSelection');
+                },
+                btnText: "Check out"),
+            const SizedBox(
               height: 50,
             )
           ],

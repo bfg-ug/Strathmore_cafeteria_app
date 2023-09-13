@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:STC/global.dart';
 
 class introPage_2 extends StatelessWidget {
+  const introPage_2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +12,7 @@ class introPage_2 extends StatelessWidget {
       child: Center(
           child: Column(
         children: [
-          SizedBox(height: 220),
+          const SizedBox(height: 220),
           Stack(
             children: [
               Padding(
@@ -18,15 +20,15 @@ class introPage_2 extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: Container(
-                    color: Color(0xffFDE0D2),
+                    color: const Color(0xffFDE0D2),
                     height: 300,
                     width: 300,
                   ),
                 ),
               ),
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 50),
-                  child: Image(
+                  padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 50),
+                  child: const Image(
                     image: AssetImage('lib/images/order.png'),
                   )),
             ],
