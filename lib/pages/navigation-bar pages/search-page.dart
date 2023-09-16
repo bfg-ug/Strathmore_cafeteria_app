@@ -36,7 +36,7 @@ class _searchpageState extends State<searchpage> {
         imagepath: "lib/images/food.jpg",
         rating: "5"),
   ];
-  List<Food> found_items = [];
+  late List<Food> found_items;
 
   @override
   void initState() {
@@ -45,21 +45,19 @@ class _searchpageState extends State<searchpage> {
   }
 
   void runFilter(String enteredKeyword) {
-    List<Map<String, dynamic>> results = [];
+    List<Food> results = [];
 
     if (enteredKeyword.isEmpty) {
-      results = all_items.cast<Map<String, dynamic>>();
+      results = all_items;
     } else {
       results = all_items
-          .where((user) =>
-              user.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .cast<Map<String, dynamic>>()
+          .where((element) =>
+              element.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
-      // we use the toLowerCase() method to make it case-insensitive
     }
 
     setState(() {
-      found_items = results.cast<Food>();
+      found_items = results;
     });
   }
 
@@ -117,12 +115,12 @@ class _searchpageState extends State<searchpage> {
                           (BuildContext _, VoidCallback openContainer) {
                         return squareTile(
                           onTap: openContainer,
-                          food: all_items[index],
+                          food: found_items[index],
                         );
                       },
                       openBuilder: (BuildContext_, VoidCallback) {
                         return DetailScreen(
-                          food: all_items[index],
+                          food: found_items[index],
                         );
                       },
                     ),

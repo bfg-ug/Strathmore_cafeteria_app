@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:STC/global.dart';
-import 'package:STC/pages/Login.dart';
-import 'package:STC/ui%20Components/SubmitBtn.dart';
-import 'package:STC/ui%20Components/textfield.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../ui Components/SubmitBtn.dart';
+import '../../ui Components/textfield.dart';
 
 class register extends StatefulWidget {
   const register({super.key});
@@ -13,15 +16,81 @@ class register extends StatefulWidget {
 
 class _registerState extends State<register> {
   //Text editing controller to access content
-  final usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _lastnameController = TextEditingController();
+  final _firstnameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _ConfirmpasswordController = TextEditingController();
 
-  final passwordController = TextEditingController();
+  //confirm password
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _firstnameController.dispose();
+    _lastnameController.dispose();
+    _passwordController.dispose();
+    _ConfirmpasswordController.dispose();
+    super.dispose();
+  }
+
+  // Initial Selected Value
+  String dropdownvalue = 'Student';
+
+  // List of items in our dropdown menu
+  List<String> items = ['Student', 'Lecturer', 'Alumni', 'Staff'];
 
   //Sign user in
-  void createAccount() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const Login();
-    }));
+  Future createAccount() async {
+    if (_firstnameController.text.trim().isNotEmpty ||
+        _lastnameController.text.trim().isNotEmpty ||
+        _passwordController.text.trim().isNotEmpty ||
+        _ConfirmpasswordController.text.trim().isNotEmpty) {
+      if (passwordConfirm()) {
+        //Create auth user
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: _emailController.text.trim(),
+                password: _passwordController.text.trim())
+            .then((value) => {
+                  FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(value.user?.uid)
+                      .set({
+                    'First name': _firstnameController.text.trim(),
+                    'Last name': _lastnameController.text.trim(),
+                    'User type': dropdownvalue.trim(),
+                    'Email': _emailController.text.trim(),
+                  })
+                });
+      }
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                content: const Text("All fields must filled"),
+              ));
+    }
+  }
+
+  Future addUserDetail(String firstName, lastName, usertype, email) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'First name': firstName,
+      'Last name': lastName,
+      'User type': usertype,
+      'Email': email,
+    });
+
+    Navigator.pushNamed(context, '/homepage');
+  }
+
+  bool passwordConfirm() {
+    if (_passwordController.text.trim() ==
+        _ConfirmpasswordController.text.trim()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
@@ -33,11 +102,11 @@ class _registerState extends State<register> {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 25),
               //Logo
               const Image(
                 image: AssetImage('lib/images/strathmore.png'),
-                height: 200,
+                height: 150,
               ),
 
               const SizedBox(height: 25),
@@ -53,36 +122,88 @@ class _registerState extends State<register> {
 
               const SizedBox(height: 25),
 
-              //Text input for email
+              //Text input for first name
               textfield(
-                  controller: usernameController,
-                  hintText: 'Name',
+                  controller: _firstnameController,
+                  hintText: 'First Name',
                   obscureText: false),
 
               const SizedBox(height: 25),
 
+              //Text input last name
+              textfield(
+                  controller: _lastnameController,
+                  hintText: 'Last Name',
+                  obscureText: false),
+
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: DropdownButton(
+                      borderRadius: BorderRadius.circular(20),
+                      elevation: 0,
+                      isExpanded: true,
+                      dropdownColor: Colors.white,
+
+                      // Initial Value
+                      value: dropdownvalue,
+
+                      // Down Arrow Icon
+                      icon: const Icon(Icons.keyboard_arrow_down),
+
+                      // Array list of items
+                      items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style: GoogleFonts.poppins(color: Colors.grey),
+                          ),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownvalue = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 25),
               //Text input for email
               textfield(
-                  controller: usernameController,
-                  hintText: 'Registration number',
+                  controller: _emailController,
+                  hintText: 'Email',
                   obscureText: false),
 
               const SizedBox(height: 25),
 
               // input for password
               textfield(
-                  controller: passwordController,
+                  controller: _passwordController,
                   hintText: 'Password',
                   obscureText: true),
 
               const SizedBox(height: 25),
 
-              // input for password
+              // input for Re-password
               textfield(
-                  controller: passwordController,
+                  controller: _ConfirmpasswordController,
                   hintText: 'Re-enter Password',
                   obscureText: true),
-              //Login button
+
+              //Create account button
               const SizedBox(height: 25),
               submitBtn(
                 onTap: createAccount,
@@ -91,33 +212,30 @@ class _registerState extends State<register> {
 
               const SizedBox(height: 25),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 80),
-                child: Row(
-                  children: [
-                    const Text("Already have an account? ",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700)),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const Login();
-                        }));
-                      },
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                            color: appcolors.orangeAccent,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    )
-                  ],
-                ),
+              // Already have an account
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Already have an account? ",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                          color: appcolors.orangeAccent,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  )
+                ],
               ),
+              SizedBox(height: 25),
             ],
           ),
         ),

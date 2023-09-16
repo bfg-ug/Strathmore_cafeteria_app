@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:STC/global.dart';
+import 'package:STC/ui%20Components/payment-tile.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class paymentSelection extends StatelessWidget {
@@ -23,69 +24,18 @@ class paymentSelection extends StatelessWidget {
                 fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
           ),
           const SizedBox(height: 100),
-          Align(
-            alignment: Alignment.center,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 2,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/paybyStaffID');
-                  },
-                  child: Column(
-                    children: [
-                      Material(
-                        elevation: 20,
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: const Color(0xffD9D9D9),
-                              borderRadius: BorderRadius.circular(20)),
-                          height: 120,
-                          width: 120,
-                          child: Image.asset("lib/images/Card.png"),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          "Student/Staff ID",
-                          style: GoogleFonts.poppins(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/paybyMpesa');
-                  },
-                  child: Column(
-                    children: [
-                      Material(
-                        elevation: 20,
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: const Color(0xffD9D9D9),
-                              borderRadius: BorderRadius.circular(20)),
-                          height: 120,
-                          width: 120,
-                          child: Image.asset("lib/images/mpesa.png"),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          "Mpesa",
-                          style: GoogleFonts.poppins(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                paymentTile(
+                    imagePath: "lib/images/mpesa.png",
+                    text: "Mpesa",
+                    route: '/paybyMpesa'),
+                paymentTile(
+                    imagePath: "lib/images/Card.png",
+                    text: "Staff/Student Id",
+                    route: '/paybyStaffID'),
               ],
             ),
           )

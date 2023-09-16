@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:STC/global.dart';
+import 'package:STC/pages/Login%20pages/Forgot_password.dart';
 import 'package:STC/pages/Login%20pages/Registration.dart';
 import 'package:STC/pages/dashboard.dart';
-import 'package:STC/pages/Login%20pages/Forgot_password.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
 import 'package:STC/ui%20Components/textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
@@ -16,15 +17,28 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   //Text editing controller to access content
-  final usernameController = TextEditingController();
+  final _emailController = TextEditingController();
 
-  final passwordController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim());
+  }
 
   //Sign user in
   void signUserIn() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return const dashboard();
     }));
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,7 +73,7 @@ class _LoginState extends State<Login> {
 
               //Text input for email
               textfield(
-                  controller: usernameController,
+                  controller: _emailController,
                   hintText: 'Email',
                   obscureText: false),
 
@@ -67,7 +81,7 @@ class _LoginState extends State<Login> {
 
               // input for password
               textfield(
-                  controller: passwordController,
+                  controller: _passwordController,
                   hintText: 'Password',
                   obscureText: true),
               const SizedBox(height: 10),
@@ -96,7 +110,7 @@ class _LoginState extends State<Login> {
               //Login button
               const SizedBox(height: 25),
               submitBtn(
-                onTap: signUserIn,
+                onTap: signIn,
                 btnText: 'Login',
               ),
 

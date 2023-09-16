@@ -1,9 +1,9 @@
+import 'package:STC/global.dart';
+import 'package:STC/pages/navigation-bar%20pages/History-page.dart';
+import 'package:STC/pages/navigation-bar%20pages/home-page.dart';
+import 'package:STC/pages/navigation-bar%20pages/search-page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
-import 'package:STC/global.dart';
-import 'package:STC/pages/navigation-bar%20pages/home-page.dart';
-import 'package:STC/pages/navigation-bar%20pages/History-page.dart';
-import 'package:STC/pages/navigation-bar%20pages/search-page.dart';
 
 class dashboard extends StatefulWidget {
   const dashboard({super.key});
@@ -15,7 +15,11 @@ class dashboard extends StatefulWidget {
 class dashboardState extends State<dashboard> {
   int myIndex = 0;
 
-  final List<Widget> navbar_pages = [const homepage(), const searchpage(), const historypage()];
+  final List<Widget> navbar_pages = [
+    const homepage(),
+    const searchpage(),
+    const historypage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +35,17 @@ class dashboardState extends State<dashboard> {
                 bottomLeft: Radius.circular(20)),
           ),
 
-          leading: const Padding(
-            padding: EdgeInsets.all(10),
-            child: ProfilePicture(
-              name: 'Fareed Matovu',
-              radius: 15,
-              fontsize: 15,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/profilepage');
+            },
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: ProfilePicture(
+                name: 'Fareed Matovu',
+                radius: 15,
+                fontsize: 15,
+              ),
             ),
           ),
 
