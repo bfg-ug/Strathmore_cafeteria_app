@@ -16,22 +16,22 @@ class searchpage extends StatefulWidget {
 class _searchpageState extends State<searchpage> {
   List<Food> all_items = [
     Food(
-        price: "1200",
+        price: 1200,
         name: "Beef",
         imagepath: "lib/images/food.jpg",
         rating: "5"),
     Food(
-        price: "2000",
+        price: 2000,
         name: "Chicken",
         imagepath: "lib/images/food.jpg",
         rating: "5"),
     Food(
-        price: "1500",
+        price: 1500,
         name: "Goat",
         imagepath: "lib/images/food.jpg",
         rating: "5"),
     Food(
-        price: "1400",
+        price: 1400,
         name: "Fish",
         imagepath: "lib/images/food.jpg",
         rating: "5"),

@@ -15,16 +15,11 @@ class cart extends StatefulWidget {
 }
 
 class _cartState extends State<cart> {
-  void removeFromCart(Food food, BuildContext context) {
-    final Shop = context.read()<shop>();
-    Shop.removefromCart(food);
-  }
-
-  int quantity = 1;
-
   @override
   Widget build(BuildContext context) {
-    String total = "0";
+    int total = 0;
+    int quantity = 1;
+
     return Consumer<shop>(
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
@@ -48,7 +43,7 @@ class _cartState extends State<cart> {
                     final String foodName = food.name;
 
                     // get price
-                    final String foodPrice = food.price;
+                    final int foodPrice = food.price;
 
                     final String foodImage = food.imagepath;
 
@@ -117,7 +112,8 @@ class _cartState extends State<cart> {
                               IconButton(
                                   color: Colors.white,
                                   onPressed: () =>
-                                      removeFromCart(food, context),
+                                      Provider.of<shop>(context, listen: false)
+                                          .removefromCart(food),
                                   icon: const Icon(Icons.delete))
                             ],
                           ),
@@ -138,7 +134,7 @@ class _cartState extends State<cart> {
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.w700)),
-                  Text("Ksh: $total",
+                  Text("Ksh: " + value.total().toString(),
                       style: GoogleFonts.poppins(
                           fontSize: 20,
                           color: Colors.white,
