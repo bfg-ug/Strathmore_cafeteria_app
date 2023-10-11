@@ -44,16 +44,14 @@ class dashboardState extends State<dashboard> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Container(
-                    child: Image.asset(
-                      'lib/images/profile.png',
-                      fit: BoxFit.contain,
-                    ),
+                  child: Image.asset(
+                    'lib/images/profile.png',
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
 
-              // Profile image
+              // Shopping cart
               actions: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -67,19 +65,21 @@ class dashboardState extends State<dashboard> {
                         },
                         icon: const Icon(Icons.shopping_cart_outlined),
                       ),
-                      Positioned(
-                        right: 0,
-                        child: CircleAvatar(
-                          radius: 12,
-                          child: Text(
-                            value.cart.length.toString(),
-                            style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
+                      if (value.cart.isNotEmpty) ...[
+                        Positioned(
+                          right: 0,
+                          child: CircleAvatar(
+                            radius: 12,
+                            child: Text(
+                              value.cart.length.toString(),
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            backgroundColor: appcolors.orangeAccent,
                           ),
-                          backgroundColor: appcolors.orangeAccent,
-                        ),
-                      )
+                        )
+                      ]
                     ],
                   ),
                 )
@@ -119,7 +119,7 @@ class dashboardState extends State<dashboard> {
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.book),
-                      label: "History",
+                      label: "Orders",
                     ),
                   ],
                 ),

@@ -1,6 +1,7 @@
 import 'package:STC/model/shop.dart';
 import 'package:STC/pages/Login%20pages/preload.dart';
 import 'package:STC/pages/Login.dart';
+import 'package:STC/pages/additional%20pages/edit-profile.dart';
 import 'package:STC/pages/additional%20pages/payByMpesa.dart';
 import 'package:STC/pages/additional%20pages/payByStaffID.dart';
 import 'package:STC/pages/additional%20pages/payment-successful.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         '/homepage': (context) => dashboard(),
         '/profilepage': (context) => profile(),
         '/login': (context) => Login(),
+        '/edit': (context) => editprofile(),
       },
     );
   }

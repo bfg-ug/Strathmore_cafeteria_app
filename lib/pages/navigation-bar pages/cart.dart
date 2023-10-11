@@ -146,7 +146,15 @@ class _cartState extends State<cart> {
             //Checkout Button
             submitBtn(
                 onTap: () {
-                  Navigator.pushNamed(context, '/paymentSelection');
+                  if (value.cart.isNotEmpty) {
+                    Navigator.pushNamed(context, '/paymentSelection');
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              content: const Text("Your cart is empty"),
+                            ));
+                  }
                 },
                 btnText: "Check out"),
             const SizedBox(
