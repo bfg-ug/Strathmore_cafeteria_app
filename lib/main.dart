@@ -12,6 +12,7 @@ import 'package:STC/pages/navigation-bar%20pages/profile-page.dart';
 import 'package:STC/pages/onBoarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mpesa_flutter_plugin/initializer.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,6 +22,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isViewed = prefs.getInt('onBoard');
+
+  MpesaFlutterPlugin.setConsumerKey("MWYdTWc7xxyY4nA2jw0QXonqpn1bsz15");
+  MpesaFlutterPlugin.setConsumerSecret("2xyuB0MBNmlqfFaG");
 
   await Firebase.initializeApp();
 
@@ -44,7 +48,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/cart': (context) => const cart(),
         '/paymentSelection': (context) => const paymentSelection(),
-        '/paybyMpesa': (context) => const paybyMpesa(),
+        '/paybyMpesa': (context) => paybyMpesa(),
         '/paybyStaffID': (context) => const paybyStaffID(),
         '/paymentSuccessful': (context) => const paymentSuccessful(),
         '/homepage': (context) => dashboard(),

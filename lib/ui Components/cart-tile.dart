@@ -36,8 +36,6 @@ class cartTile extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox(
-                        height: 90,
-                        width: 100,
                         child: Image.asset(imagepath, fit: BoxFit.cover),
                       ),
                     ),

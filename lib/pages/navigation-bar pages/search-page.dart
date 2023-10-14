@@ -35,6 +35,26 @@ class _searchpageState extends State<searchpage> {
         name: "Fish",
         imagepath: "lib/images/food.jpg",
         rating: "5"),
+    Food(
+        price: 1200,
+        name: "Beef",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: 2000,
+        name: "Chicken",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: 1500,
+        name: "Goat",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
+    Food(
+        price: 1400,
+        name: "Fish",
+        imagepath: "lib/images/food.jpg",
+        rating: "5"),
   ];
   late List<Food> found_items;
 
@@ -92,8 +112,8 @@ class _searchpageState extends State<searchpage> {
                 ),
                 fillColor: Colors.white,
                 filled: true,
-                hintText: "Search",
                 hintStyle: TextStyle(color: Colors.grey[400]),
+                prefixIcon: Icon(Icons.search_off_outlined),
               ),
             ),
             const SizedBox(height: 25),

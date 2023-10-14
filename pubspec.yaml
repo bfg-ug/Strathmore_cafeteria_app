@@ -32,6 +32,7 @@ dependencies:
   cloud_firestore:
   image_picker: ^1.0.4
   firebase_storage: ^11.2.7
+  mpesa_flutter_plugin:
 
 dev_dependencies:
   flutter_test:

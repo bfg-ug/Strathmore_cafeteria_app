@@ -42,172 +42,152 @@ class _profileState extends State<profile> {
             final userData = snapshots.data!.data() as Map<String, dynamic>;
             return Container(
               decoration: BoxDecoration(
-                color: appcolors.blueAccent,
+                color: appcolors.backgroundColor,
               ),
-              child: Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 25),
-                    if (userData['Profile image'] != null) ...[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Container(
-                          height: 200,
-                          width: 200,
-                          color: Colors.red,
-                          child: Image.network(
-                            '${userData['Profile image']}',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ] else ...[
-                      Image.asset(
-                        'lib/images/profile.png',
-                        fit: BoxFit.contain,
+              child: Column(
+                children: [
+                  if (userData['Profile image'] != null) ...[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Container(
                         height: 150,
-                      ),
-                    ],
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Text(
-                      userData['First name'] + " " + userData['Last name'],
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      userData['User type'],
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w300),
-                    ),
-                    Text(
-                      "Quick actions",
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Expanded(
-                        child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Material(
-                        elevation: 15,
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.grey,
-                          ),
-                          child: ListView(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: appcolors.blueAccent,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: ListTile(
-                                      onTap: () {
-                                        Navigator.pushNamed(context, '/edit');
-                                      },
-                                      iconColor: Colors.white,
-                                      leading: Icon(Icons.person_2_outlined),
-                                      title: Text(
-                                        "Edit profile",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white, fontSize: 18),
-                                      ),
-                                      trailing: Icon(Icons.arrow_forward_ios),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: appcolors.blueAccent,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: ListTile(
-                                      iconColor: Colors.white,
-                                      leading: Icon(Icons.lock_reset),
-                                      title: Text(
-                                        "Reset password",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white, fontSize: 18),
-                                      ),
-                                      trailing: Icon(Icons.arrow_forward_ios),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: appcolors.blueAccent,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: ListTile(
-                                      iconColor: Colors.white,
-                                      leading:
-                                          Icon(Icons.credit_card_off_outlined),
-                                      title: Text(
-                                        "Refund",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white, fontSize: 18),
-                                      ),
-                                      trailing: Icon(Icons.arrow_forward_ios),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: appcolors.blueAccent,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: ListTile(
-                                      onTap: () {
-                                        FirebaseAuth.instance.signOut();
-                                        Navigator.pop(context);
-                                      },
-                                      iconColor: Colors.white,
-                                      leading: Icon(Icons.signpost_outlined),
-                                      title: Text(
-                                        "Sign Out",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white, fontSize: 18),
-                                      ),
-                                      trailing: Icon(Icons.arrow_forward_ios),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                        width: 150,
+                        color: Colors.red,
+                        child: Image.network(
+                          '${userData['Profile image']}',
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    )),
+                    ),
+                  ] else ...[
+                    Image.asset(
+                      'lib/images/profile.png',
+                      fit: BoxFit.contain,
+                      height: 150,
+                    ),
                   ],
-                ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Text(
+                    userData['First name'] + " " + userData['Last name'],
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    userData['User type'],
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Expanded(
+                      child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                    child: ListView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: appcolors.blueAccent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/edit');
+                                },
+                                iconColor: Colors.white,
+                                leading: Icon(Icons.person_2_outlined),
+                                title: Text(
+                                  "Edit profile",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                trailing: Icon(Icons.arrow_forward_ios),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: appcolors.blueAccent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: ListTile(
+                                iconColor: Colors.white,
+                                leading: Icon(Icons.lock_reset),
+                                title: Text(
+                                  "Reset password",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                trailing: Icon(Icons.arrow_forward_ios),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: appcolors.blueAccent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: ListTile(
+                                iconColor: Colors.white,
+                                leading: Icon(Icons.credit_card_off_outlined),
+                                title: Text(
+                                  "Refund",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                trailing: Icon(Icons.arrow_forward_ios),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: appcolors.blueAccent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: ListTile(
+                                onTap: () {
+                                  FirebaseAuth.instance.signOut();
+                                  Navigator.pop(context);
+                                },
+                                iconColor: Colors.white,
+                                leading: Icon(Icons.signpost_outlined),
+                                title: Text(
+                                  "Sign Out",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                trailing: Icon(Icons.arrow_forward_ios),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+                ],
               ),
             );
           } else if (snapshots.hasError) {

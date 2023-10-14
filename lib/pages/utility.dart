@@ -16,10 +16,10 @@ pickImage(ImageSource source) async {
     Reference referenceRoot = FirebaseStorage.instance.ref();
     Reference referenceDirImages = referenceRoot.child('Profileimages');
     Reference referenceImageTobeUploaded =
-        referenceDirImages.child('${_file?.name}');
+        referenceDirImages.child('${_file.name}');
 
     try {
-      await referenceImageTobeUploaded.putFile(File(_file!.path));
+      await referenceImageTobeUploaded.putFile(File(_file.path));
       imageUrl = await referenceImageTobeUploaded.getDownloadURL();
       FirebaseFirestore.instance
           .collection('users')

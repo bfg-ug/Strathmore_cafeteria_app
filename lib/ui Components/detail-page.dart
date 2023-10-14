@@ -67,111 +67,104 @@ class _DetailScreenState extends State<DetailScreen> {
         body: ListView(
           children: [
             // image
-            Expanded(
-              child: Container(
-                  child: Image.asset(
+            Container(
+              child: Image.asset(
                 widget.food.imagepath,
-                fit: BoxFit.cover,
-              )),
+                fit: BoxFit.fill,
+              ),
             ),
-            Expanded(
-              child: Container(
-                color: appcolors.backgroundColor,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    //title
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              "lib/images/star.svg",
-                              height: 30,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                widget.food.rating,
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                            Text(widget.food.name,
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                )),
-                          ],
+            Column(
+              children: [
+                const SizedBox(
+                  height: 25,
+                ),
+                //title
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 35),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          "lib/images/star.svg",
+                          height: 30,
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                    // description
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, corrupti quos. Numquam aspernatur, quibusdam doloribus natus dolor ullam exercitationem optio.",
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            widget.food.rating,
                             style: GoogleFonts.poppins(
                               color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        Text(widget.food.name,
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
                             )),
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                    // Quantity and price
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: increaseQuantity,
-                          child: SvgPicture.asset(
-                            "lib/icons/plus.svg",
-                            height: 30,
-                            width: 30,
-                            color: appcolors.orangeAccent,
-                          ),
-                        ),
-                        Text(quantity.toString(),
-                            style: GoogleFonts.poppins(
-                                fontSize: 20, color: Colors.white)),
-                        GestureDetector(
-                          onTap: decreaseQuantity,
-                          child: SvgPicture.asset(
-                            "lib/icons/minus.svg",
-                            height: 30,
-                            width: 30,
-                            color: appcolors.orangeAccent,
-                          ),
-                        ),
-                        Text("Ksh: ${widget.food.price}",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20, color: Colors.white)),
                       ],
                     ),
-                    const SizedBox(
-                      height: 24,
+                  ),
+                ),
+                const SizedBox(height: 25),
+                // description
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 35),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, corrupti quos. Numquam aspernatur, quibusdam doloribus natus dolor ullam exercitationem optio.",
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                        )),
+                  ),
+                ),
+                const SizedBox(height: 25),
+                // Quantity and price
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: increaseQuantity,
+                      child: SvgPicture.asset(
+                        "lib/icons/plus.svg",
+                        height: 30,
+                        width: 30,
+                        color: appcolors.orangeAccent,
+                      ),
                     ),
-                    //Add to cart button
-                    submitBtn(
-                      onTap: addToCart,
-                      btnText: 'Add to Cart',
+                    Text(quantity.toString(),
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, color: Colors.white)),
+                    GestureDetector(
+                      onTap: decreaseQuantity,
+                      child: SvgPicture.asset(
+                        "lib/icons/minus.svg",
+                        height: 30,
+                        width: 30,
+                        color: appcolors.orangeAccent,
+                      ),
                     ),
+                    Text("Ksh: ${widget.food.price}",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, color: Colors.white)),
                   ],
                 ),
-              ),
+                const SizedBox(
+                  height: 24,
+                ),
+                //Add to cart button
+              ],
+            ),
+            submitBtn(
+              onTap: addToCart,
+              btnText: 'Add to Cart',
             ),
           ],
         ));

@@ -16,6 +16,7 @@ class paymentSelection extends StatelessWidget {
       ),
       backgroundColor: appcolors.backgroundColor,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 100),
           Text(

@@ -97,14 +97,7 @@ class _editprofileState extends State<editprofile> {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                content: const Text("No changes were made"),
-                actions: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.done))
-                ],
+                content: const Text("No changes were made to your account"),
               ));
     }
   }
@@ -118,6 +111,7 @@ class _editprofileState extends State<editprofile> {
     // Initial Selected Value
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: appcolors.backgroundColor,
       appBar: AppBar(
         backgroundColor: appcolors.backgroundColor,
@@ -143,100 +137,94 @@ class _editprofileState extends State<editprofile> {
             final userData = snapshots.data!.data() as Map<String, dynamic>;
             return Container(
               decoration: BoxDecoration(
-                color: appcolors.blueAccent,
+                color: appcolors.backgroundColor,
               ),
-              child: Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 25),
-                    Stack(children: [
-                      if (userData['Profile image'] != null) ...[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            color: Colors.red,
-                            child: Image.network(
-                              '${userData['Profile image']}',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ] else ...[
-                        Image.asset(
-                          'lib/images/profile.png',
-                          fit: BoxFit.contain,
-                          height: 150,
-                        ),
-                      ],
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
+              child: Column(
+                children: [
+                  Stack(children: [
+                    if (userData['Profile image'] != null) ...[
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
                         child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: appcolors.orangeAccent,
+                          height: 200,
+                          width: 200,
+                          color: Colors.red,
+                          child: Image.network(
+                            '${userData['Profile image']}',
+                            fit: BoxFit.cover,
                           ),
-                          child: IconButton(
-                              onPressed: selectImage,
-                              icon: Icon(Icons.add_a_photo_outlined)),
                         ),
-                      )
-                    ]),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Text(
+                      ),
+                    ] else ...[
+                      Image.asset(
+                        'lib/images/profile.png',
+                        fit: BoxFit.contain,
+                        height: 150,
+                      ),
+                    ],
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: appcolors.orangeAccent,
+                        ),
+                        child: IconButton(
+                            onPressed: selectImage,
+                            icon: Icon(Icons.add_a_photo_outlined)),
+                      ),
+                    )
+                  ]),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
                       "Update Personal profile",
                       style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w600),
                     ),
-                    Expanded(
-                        child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: ListView(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: textfield(
-                                controller: _firstnameController,
-                                hintText: userData['First name'],
-                                obscureText: false),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: textfield(
-                                controller: _lastnameController,
-                                hintText: userData['Last name'],
-                                obscureText: false),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: submitBtn(
-                                onTap: updateAccount, btnText: "Update"),
-                          )
-                        ],
-                      ),
-                    )),
-                    SizedBox(height: 25),
-                    Text(
-                      "Or",
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
+                  ),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: textfield(
+                              controller: _firstnameController,
+                              hintText: userData['First name'],
+                              obscureText: false),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: textfield(
+                              controller: _lastnameController,
+                              hintText: userData['Last name'],
+                              obscureText: false),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 25),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: submitBtn(
-                          onTap: deleteAccount, btnText: "Delete account"),
-                    )
-                  ],
-                ),
+                  )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: submitBtn(onTap: updateAccount, btnText: "Update"),
+                  ),
+                  Text(
+                    "Or",
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: submitBtn(
+                        onTap: deleteAccount, btnText: "Delete account"),
+                  )
+                ],
               ),
             );
           } else if (snapshots.hasError) {

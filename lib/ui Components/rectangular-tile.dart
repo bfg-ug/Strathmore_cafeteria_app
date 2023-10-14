@@ -13,8 +13,8 @@ class rectangularTile extends StatelessWidget {
     return Material(
       elevation: 20,
       borderRadius: BorderRadius.circular(20),
-      child: SizedBox(
-        width: 300,
+      child: Container(
+        width: 350,
         child: Image.asset(
           food.imagepath,
           fit: BoxFit.cover,
