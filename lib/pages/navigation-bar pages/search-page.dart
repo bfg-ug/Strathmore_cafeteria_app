@@ -56,6 +56,7 @@ class _searchpageState extends State<searchpage> {
         imagepath: "lib/images/food.jpg",
         rating: "5"),
   ];
+
   late List<Food> found_items;
 
   @override
@@ -83,73 +84,72 @@ class _searchpageState extends State<searchpage> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).viewInsets.bottom;
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Expanded(
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "Search",
-                style: GoogleFonts.poppins(
-                    fontSize: 25,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600),
-              ),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "Search",
+              style: GoogleFonts.poppins(
+                  fontSize: 25,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600),
             ),
-            const SizedBox(height: 25),
-            TextField(
-              onChanged: (value) => runFilter(value),
-              decoration: InputDecoration(
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                ),
-                fillColor: Colors.white,
-                filled: true,
-                hintStyle: TextStyle(color: Colors.grey[400]),
-                prefixIcon: Icon(Icons.search_off_outlined),
+          ),
+          const SizedBox(height: 25),
+          TextField(
+            onChanged: (value) => runFilter(value),
+            decoration: InputDecoration(
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
-            ),
-            const SizedBox(height: 25),
-            Expanded(
-              child: GridView.builder(
-                itemCount: found_items.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: OpenContainer(
-                      closedElevation: 20,
-                      closedShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      transitionDuration: const Duration(milliseconds: 400),
-                      transitionType: ContainerTransitionType.fade,
-                      closedBuilder:
-                          (BuildContext _, VoidCallback openContainer) {
-                        return squareTile(
-                          onTap: openContainer,
-                          food: found_items[index],
-                        );
-                      },
-                      openBuilder: (BuildContext_, VoidCallback) {
-                        return DetailScreen(
-                          food: found_items[index],
-                        );
-                      },
-                    ),
-                  );
-                },
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
+              fillColor: Colors.white,
+              filled: true,
+              hintStyle: TextStyle(color: Colors.grey[400]),
+              prefixIcon: Icon(Icons.search_off_outlined),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 25),
+          Expanded(
+            child: GridView.builder(
+              itemCount: found_items.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: OpenContainer(
+                    closedElevation: 20,
+                    closedShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    transitionDuration: const Duration(milliseconds: 400),
+                    transitionType: ContainerTransitionType.fade,
+                    closedBuilder:
+                        (BuildContext _, VoidCallback openContainer) {
+                      return squareTile(
+                        onTap: openContainer,
+                        food: found_items[index],
+                      );
+                    },
+                    openBuilder: (BuildContext_, VoidCallback) {
+                      return DetailScreen(
+                        food: found_items[index],
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

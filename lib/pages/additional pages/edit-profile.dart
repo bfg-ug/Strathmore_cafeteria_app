@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:STC/global.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
 import 'package:STC/ui%20Components/textfield.dart';
@@ -50,7 +48,6 @@ class _editprofileState extends State<editprofile> {
                         ))),
                 GestureDetector(
                     onTap: () {
-                      Navigator.pop(context);
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -103,13 +100,11 @@ class _editprofileState extends State<editprofile> {
   }
 
   void selectImage() async {
-    Uint8List img = await pickImage(ImageSource.gallery);
+    await pickImage(ImageSource.gallery);
   }
 
   @override
   Widget build(BuildContext context) {
-    // Initial Selected Value
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: appcolors.backgroundColor,
@@ -186,8 +181,7 @@ class _editprofileState extends State<editprofile> {
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Expanded(
-                      child: Padding(
+                  Padding(
                     padding: const EdgeInsets.all(15),
                     child: Column(
                       children: [
@@ -207,7 +201,7 @@ class _editprofileState extends State<editprofile> {
                         ),
                       ],
                     ),
-                  )),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: submitBtn(onTap: updateAccount, btnText: "Update"),
@@ -221,8 +215,28 @@ class _editprofileState extends State<editprofile> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: submitBtn(
-                        onTap: deleteAccount, btnText: "Delete account"),
+                    child: Material(
+                      elevation: 5,
+                      borderRadius: BorderRadius.circular(30),
+                      child: GestureDetector(
+                        onTap: deleteAccount,
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Center(
+                            child: Text(
+                              "Delete accunt",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),

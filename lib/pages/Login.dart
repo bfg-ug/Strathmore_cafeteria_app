@@ -43,8 +43,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: appcolors.backgroundColor,
       body: SingleChildScrollView(
         child: Center(

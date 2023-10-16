@@ -95,8 +95,8 @@ class _registerState extends State<register> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: appcolors.backgroundColor,
       body: SingleChildScrollView(
         child: Center(
@@ -138,14 +138,14 @@ class _registerState extends State<register> {
 
               const SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.white),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: DropdownButton(
                       borderRadius: BorderRadius.circular(20),
                       elevation: 0,

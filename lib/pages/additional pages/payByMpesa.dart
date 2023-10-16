@@ -24,7 +24,7 @@ class _paybyMpesaState extends State<paybyMpesa> {
     super.dispose();
   }
 
-  Future<void> lipaNaMpesa(double amount) async {
+  Future<dynamic> lipaNaMpesa(double amount) async {
     dynamic transactionInitialisation;
 //Wrap it with a try-catch
     try {
@@ -35,20 +35,18 @@ class _paybyMpesaState extends State<paybyMpesa> {
               //use your store number if the transaction type is CustomerBuyGoodsOnline
               transactionType: TransactionType.CustomerBuyGoodsOnline,
               amount: amount,
-              partyA: _phoneNumberController.text.trim(),
+              partyA: _phoneNumberController.text.toString(),
               partyB: "174379",
               callBackURL: Uri(
-                  scheme: "https",
-                  host: "mpesa-requestbin.herokuapp.com",
-                  path: "/1hhy6391"),
-              accountReference: "Test",
-              phoneNumber: _phoneNumberController.text.trim(),
+                  scheme: "https", host: "1234.1234.co.ke", path: "/1234.php"),
+              accountReference: "payment",
+              phoneNumber: _phoneNumberController.text.toString(),
               baseUri: Uri(scheme: "https", host: "sandbox.safaricom.co.ke"),
               transactionDesc: "Food Purchase",
               passKey:
-                  "ibIFm4UZ3xdy6PqOdyTxVhyVFpKRO8DWeOa0PAcLxtIrY3cR8giYsXCqE09dhQ3GChm9LfuQVHPWAEH/fe9McaLEnW5QUy6ca3+4xbxcvIBr1oX/SRAb1eN6ydXPc8j3J0+WX3hIFY2la7MQRdghtDa+lG+FZ/1Gaa9MPl7SONci0IzxghpxqidoNw/qpDbIFEWY/TGglzfwqyanbET1xKWF45i51Br0xJUiTd3RyMQBhRHxWfRE4ZMnWecNUNI9dBVN7ym8uot0ZYkATLQjAiMD2MyZU454TCGU9M9qZE8opefcyLsAEsMWmv4G2Ib42sUzmsIKP8FICOF/g6iXxw==");
+                  "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
 
-      return transactionInitialisation;
+      print(transactionInitialisation.toString());
     } catch (e) {
 //you can implement your exception handling here.
 //Network un-reachability is a sure exception.
@@ -103,7 +101,7 @@ class _paybyMpesaState extends State<paybyMpesa> {
                       height: 50,
                     ),
                     textfield(
-                        hintText: "07*********",
+                        hintText: "254**********",
                         obscureText: false,
                         controller: _phoneNumberController),
                     const SizedBox(height: 25),
@@ -112,7 +110,6 @@ class _paybyMpesaState extends State<paybyMpesa> {
                           lipaNaMpesa(value.total().toDouble());
                         },
                         btnText: " Send prompt"),
-                    Text(value.total().toString())
                   ],
                 ),
               ),

@@ -51,6 +51,7 @@ class shop extends ChangeNotifier {
         rating: "5"),
   ];
 
+  //Offers
   final List<Food> _todays_Offers = [
     Food(
         price: 1200,
@@ -72,7 +73,7 @@ class shop extends ChangeNotifier {
 
   List<Food> get cart => _cart;
 
-  List<Food> get popular_items => popular_items;
+  List<Food> get popular_items => _popular_items;
 
   List<Food> get todays_offer => _todays_Offers;
 
@@ -90,7 +91,7 @@ class shop extends ChangeNotifier {
     notifyListeners();
   }
 
-  // total
+  //Calculate total
   int total() {
     int totalprice = 0;
     for (int i = 0; i < _cart.length; i++) {
