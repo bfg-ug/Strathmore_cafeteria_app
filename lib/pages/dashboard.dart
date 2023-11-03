@@ -30,6 +30,12 @@ class dashboardState extends State<dashboard> {
   ];
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     bool isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0.0;
     return Consumer<shop>(

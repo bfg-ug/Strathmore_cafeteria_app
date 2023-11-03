@@ -68,6 +68,9 @@ class shop extends ChangeNotifier {
   // Customer cart
   final List<Food> _cart = [];
 
+  //found Item
+  late List<Food> _found_items;
+
   //getter method
   List<Food> get Menu => _Menu;
 
@@ -76,6 +79,8 @@ class shop extends ChangeNotifier {
   List<Food> get popular_items => _popular_items;
 
   List<Food> get todays_offer => _todays_Offers;
+
+  List<Food> get found_items => _found_items;
 
   //add to cart
   void addtoCart(Food foodItem, int quantity) {
@@ -99,5 +104,19 @@ class shop extends ChangeNotifier {
     }
 
     return totalprice;
+  }
+
+  //Search
+  void runFilter(String enteredKeyword) {
+    List<Food> results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _Menu;
+    } else {
+      results = _Menu.where((element) =>
+              element.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+
+      _found_items = results;
+    }
   }
 }
