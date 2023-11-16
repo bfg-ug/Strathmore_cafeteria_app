@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/food.dart';
 import '../../ui Components/detail-page.dart';
 import '../../ui Components/square-tile.dart';
 
@@ -16,74 +15,6 @@ class searchpage extends StatefulWidget {
 }
 
 class _searchpageState extends State<searchpage> {
-  List<Food> all_items = [
-    Food(
-        price: 1200,
-        name: "Beef",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 2000,
-        name: "Chicken",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1500,
-        name: "Goat",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1400,
-        name: "Fish",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1200,
-        name: "Beef",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 2000,
-        name: "Chicken",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1500,
-        name: "Goat",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1400,
-        name: "Fish",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-  ];
-
-  late List<Food> found_items;
-
-  @override
-  void initState() {
-    found_items = all_items;
-    super.initState();
-  }
-
-  void runFilter(String enteredKeyword) {
-    List<Food> results = [];
-
-    if (enteredKeyword.isEmpty) {
-      results = all_items;
-    } else {
-      results = all_items
-          .where((element) =>
-              element.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();
-    }
-
-    setState(() {
-      found_items = results;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     MediaQuery.of(context).viewInsets.bottom;
@@ -104,7 +35,7 @@ class _searchpageState extends State<searchpage> {
                   ),
                   const SizedBox(height: 25),
                   TextField(
-                    onChanged: (input) => runFilter(input),
+                    onChanged: (input) => value.runFilter(input),
                     decoration: InputDecoration(
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
@@ -117,13 +48,13 @@ class _searchpageState extends State<searchpage> {
                       fillColor: Colors.white,
                       filled: true,
                       hintStyle: TextStyle(color: Colors.grey[400]),
-                      prefixIcon: Icon(Icons.search_off_outlined),
+                      prefixIcon: Icon(Icons.search),
                     ),
                   ),
                   const SizedBox(height: 25),
                   Expanded(
                     child: GridView.builder(
-                      itemCount: value.Menu.length,
+                      itemCount: value.found_items.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2),
@@ -141,12 +72,12 @@ class _searchpageState extends State<searchpage> {
                                 (BuildContext _, VoidCallback openContainer) {
                               return squareTile(
                                 onTap: openContainer,
-                                food: found_items[index],
+                                food: value.found_items[index],
                               );
                             },
                             openBuilder: (BuildContext_, VoidCallback) {
                               return DetailScreen(
-                                food: found_items[index],
+                                food: value.found_items[index],
                               );
                             },
                           ),

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:STC/global.dart';
-import 'package:STC/pages/additional%20pages/otp-check.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
-import 'package:STC/ui%20Components/textfield.dart';
+import 'package:STC/ui%20Components/textfield%20email.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class Forgot_password extends StatefulWidget {
   const Forgot_password({super.key});
@@ -13,13 +13,26 @@ class Forgot_password extends StatefulWidget {
 
 class _Forgot_passwordState extends State<Forgot_password> {
   //Text editing controller to access content
-  final emailController = TextEditingController();
+  final _emailController = TextEditingController();
 
   //Reset password function
-  void resetPassword() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const otpCheck();
-    }));
+  Future resetPassword() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailController.text.trim());
+
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                content: Text("Password Reset email link check email"),
+              ));
+    } catch (error) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                content: Text(error.toString()),
+              ));
+    }
   }
 
   @override
@@ -68,17 +81,16 @@ class _Forgot_passwordState extends State<Forgot_password> {
               const SizedBox(height: 25),
 
               // input for user email
-              textfield(
-                  controller: emailController,
-                  hintText: 'example@example.com',
-                  obscureText: false),
+              textfieldEmail(
+                controller: _emailController,
+              ),
               const SizedBox(height: 10),
 
               //Submit button
               const SizedBox(height: 25),
               submitBtn(
                 onTap: resetPassword,
-                btnText: 'Send OTP',
+                btnText: 'Send Reset Link',
               ),
             ],
           ),

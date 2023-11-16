@@ -1,4 +1,5 @@
 import 'package:STC/model/shop.dart';
+import 'package:STC/pages/Login%20pages/Forgot_password.dart';
 import 'package:STC/pages/Login%20pages/preload.dart';
 import 'package:STC/pages/Login.dart';
 import 'package:STC/pages/additional%20pages/edit-profile.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/paybyStaffID': (context) => const paybyStaffID(),
         '/paymentSuccessful': (context) => const paymentSuccessful(),
         '/homepage': (context) => dashboard(),
+        '/resetPassword': (context) => Forgot_password(),
         '/profilepage': (context) => profile(),
         '/login': (context) => Login(),
         '/edit': (context) => editprofile(),

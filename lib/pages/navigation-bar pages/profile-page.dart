@@ -126,6 +126,10 @@ class _profileState extends State<profile> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8),
                               child: ListTile(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, '/resetPassword');
+                                },
                                 iconColor: Colors.white,
                                 leading: Icon(Icons.lock_reset),
                                 title: Text(

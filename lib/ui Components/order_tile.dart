@@ -66,8 +66,8 @@ class _order_tileState extends State<order_tile> {
                       child: SizedBox(
                         height: 90,
                         width: 100,
-                        child: Image.asset("lib/images/burger 3.png",
-                            fit: BoxFit.cover),
+                        child:
+                            Image.network(widget.imagepath, fit: BoxFit.cover),
                       ),
                     ),
                   ),

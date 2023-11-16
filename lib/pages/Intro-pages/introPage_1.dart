@@ -1,6 +1,6 @@
+import 'package:STC/global.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:STC/global.dart';
 
 class introPage_1 extends StatelessWidget {
   const introPage_1({super.key});
@@ -9,15 +9,15 @@ class introPage_1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: appcolors.backgroundColor,
-      child: Center(
-          child: Column(
-        children: [
-          const SizedBox(height: 200),
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: ClipRRect(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        child: Column(
+          children: [
+            const SizedBox(height: 100),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: Container(
                     color: const Color(0xffFDE0D2),
@@ -25,24 +25,27 @@ class introPage_1 extends StatelessWidget {
                     width: 300,
                   ),
                 ),
-              ),
-              Container(
-                  padding: const EdgeInsets.all(20),
-                  child: const Image(
-                    image: AssetImage('lib/images/strathmore.png'),
-                  )),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
-            child: Text("Welcome to Pick n go",
-                style: GoogleFonts.poppins(
-                    fontSize: 44,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500)),
-          )
-        ],
-      )),
+                Container(
+                    padding: const EdgeInsets.all(20),
+                    child: const Image(
+                      image: AssetImage('lib/images/strathmore.png'),
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text("Welcome to the STC app",
+                  style: GoogleFonts.poppins(
+                      fontSize: 40,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500)),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,7 @@
+import 'package:STC/model/pets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 import 'food.dart';
 
@@ -68,9 +71,6 @@ class shop extends ChangeNotifier {
   // Customer cart
   final List<Food> _cart = [];
 
-  //found Item
-  late List<Food> _found_items;
-
   //getter method
   List<Food> get Menu => _Menu;
 
@@ -107,16 +107,49 @@ class shop extends ChangeNotifier {
   }
 
   //Search
-  void runFilter(String enteredKeyword) {
-    List<Food> results = [];
-    if (enteredKeyword.isEmpty) {
-      results = _Menu;
-    } else {
-      results = _Menu.where((element) =>
-              element.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();
+  List<Food> _found_items = [];
+  String searchtext = "";
 
-      _found_items = results;
+  updateData() {
+    if (searchtext.isEmpty) {
+      _found_items = _Menu;
+    } else {
+      _found_items = _Menu.where((element) =>
+              element.name.toLowerCase().contains(searchtext.toLowerCase()))
+          .toList();
     }
+    notifyListeners();
+  }
+
+  runFilter(String enteredKeyword) {
+    searchtext = enteredKeyword;
+    updateData();
+  }
+
+  //API Test
+  static const apiEndpoint =
+      "https://jatinderji.github.io/users_pets_api/users_pets.json";
+
+  bool isloading = true;
+
+  String error = "";
+
+  Pets pets = Pets(data: []);
+
+  getDatafromApi() async {
+    try {
+      Response response = await http.get(Uri.parse(apiEndpoint));
+      if (response.statusCode == 200) {
+        pets = petsFromJson(response.body);
+      } else {
+        error = response.statusCode.toString();
+      }
+    } catch (e) {
+      error = e.toString();
+    }
+
+    isloading = false;
+
+    notifyListeners();
   }
 }

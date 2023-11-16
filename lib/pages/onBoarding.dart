@@ -60,19 +60,23 @@ class _onBoardingScreenState extends State<onBoarding> {
                     onTap: () {
                       _onBoardingcontroller.jumpToPage(3);
                     },
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 20),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: const Text(
-                          "Skip",
-                          style: TextStyle(
-                              color: Color(0xffc1aa6a),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ))),
+                    child: Material(
+                      elevation: 20,
+                      borderRadius: BorderRadius.circular(15),
+                      child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 20),
+                          decoration: BoxDecoration(
+                              color: appcolors.blueAccent,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: const Text(
+                            "Skip",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    )),
 
                 SmoothPageIndicator(
                     effect: SlideEffect(activeDotColor: appcolors.orangeAccent),
@@ -89,19 +93,23 @@ class _onBoardingScreenState extends State<onBoarding> {
                           return const Login();
                         }));
                       },
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: const Text(
-                            "Done",
-                            style: TextStyle(
-                                color: Color(0xffc1aa6a),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          )))
+                      child: Material(
+                        elevation: 20,
+                        borderRadius: BorderRadius.circular(15),
+                        child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 20),
+                            decoration: BoxDecoration(
+                                color: appcolors.blueAccent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: const Text(
+                              "Done",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                      ))
                 else
                   GestureDetector(
                       onTap: () {
@@ -109,19 +117,23 @@ class _onBoardingScreenState extends State<onBoarding> {
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeIn);
                       },
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: const Text(
-                            "Next",
-                            style: TextStyle(
-                                color: Color(0xffc1aa6a),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ))),
+                      child: Material(
+                        elevation: 20,
+                        borderRadius: BorderRadius.circular(15),
+                        child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 20),
+                            decoration: BoxDecoration(
+                                color: appcolors.blueAccent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: const Text(
+                              "Next",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                      )),
               ],
             ))
       ],

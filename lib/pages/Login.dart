@@ -3,7 +3,8 @@ import 'package:STC/pages/Login%20pages/Forgot_password.dart';
 import 'package:STC/pages/Login%20pages/Registration.dart';
 import 'package:STC/pages/dashboard.dart';
 import 'package:STC/ui%20Components/SubmitBtn.dart';
-import 'package:STC/ui%20Components/textfield.dart';
+import 'package:STC/ui%20Components/textfield%20email.dart';
+import 'package:STC/ui%20Components/textfield_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -72,18 +73,14 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 50),
 
               //Text input for email
-              textfield(
-                  controller: _emailController,
-                  hintText: 'Email',
-                  obscureText: false),
+              textfieldEmail(controller: _emailController),
 
               const SizedBox(height: 25),
 
               // input for password
-              textfield(
-                  controller: _passwordController,
-                  hintText: 'Password',
-                  obscureText: true),
+              textfieldPassword(
+                controller: _passwordController,
+              ),
               const SizedBox(height: 10),
 
               //
