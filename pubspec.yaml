@@ -34,6 +34,7 @@ dependencies:
   firebase_storage: ^11.2.7
   mpesa_flutter_plugin:
   http: ^1.1.0
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:

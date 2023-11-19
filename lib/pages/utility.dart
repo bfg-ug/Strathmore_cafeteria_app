@@ -30,3 +30,34 @@ pickImage(ImageSource source) async {
     print('No image selected');
   }
 }
+
+Future<void> updatePhoto(ImageSource source) async {
+  final ImagePicker _imagepicker = ImagePicker();
+  final currentUser = FirebaseAuth.instance.currentUser!;
+
+  String imageUrl;
+
+  XFile? _file = await _imagepicker.pickImage(source: source);
+
+  DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+      .collection('users')
+      .doc(currentUser.uid)
+      .get();
+
+  Reference referenceImageTobeUploaded =
+      FirebaseStorage.instance.refFromURL(documentSnapshot['Profile image']);
+  if (_file != null) {
+    try {
+      await referenceImageTobeUploaded.putFile(File(_file.path));
+      imageUrl = await referenceImageTobeUploaded.getDownloadURL();
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser.uid)
+          .update({'Profile image': imageUrl});
+    } catch (error) {
+      print(error.toString());
+    }
+  } else {
+    print('No image selected');
+  }
+}

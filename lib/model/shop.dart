@@ -1,4 +1,6 @@
 import 'package:STC/model/pets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -151,5 +153,14 @@ class shop extends ChangeNotifier {
     isloading = false;
 
     notifyListeners();
+  }
+
+  getUserInfo() async {
+    var currentUser = FirebaseAuth.instance.currentUser!;
+
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser.uid)
+        .get();
   }
 }

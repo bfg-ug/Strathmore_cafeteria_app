@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:STC/model/pets.dart';
+import 'package:STC/ui%20Components/order_timeline_page.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -62,13 +64,36 @@ class _historypageState extends State<historypage> {
               child: ListView.builder(
                   itemCount: pets.data.length,
                   itemBuilder: (context, index) {
-                    return order_tile(
-                        foodname: pets.data[index].petName,
-                        imagepath: pets.data[index].petImage,
-                        foodprice: "100",
-                        quantity: 5,
-                        orderNumber: "12345",
-                        status: "Complete");
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: OpenContainer(
+                        closedElevation: 10,
+                        closedShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        transitionDuration: const Duration(milliseconds: 400),
+                        transitionType: ContainerTransitionType.fade,
+                        closedBuilder:
+                            (BuildContext _, VoidCallback openContainer) {
+                          return order_tile(
+                              foodname: pets.data[index].petName,
+                              imagepath: pets.data[index].petImage,
+                              foodprice: "100",
+                              quantity: 2,
+                              orderNumber: pets.data[index].id.toString(),
+                              status: "packing");
+                        },
+                        openBuilder: (BuildContext_, VoidCallback) {
+                          return order_timeline();
+                        },
+                      ),
+                    );
+                    // return order_tile(
+                    //     foodname: pets.data[index].petName,
+                    //     imagepath: pets.data[index].petImage,
+                    //     foodprice: "100",
+                    //     quantity: 5,
+                    //     orderNumber: "12345",
+                    //     status: "Complete");
                   }),
             ),
           ],

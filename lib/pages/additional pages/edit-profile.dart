@@ -100,7 +100,9 @@ class _editprofileState extends State<editprofile> {
   }
 
   void selectImage() async {
-    await pickImage(ImageSource.gallery);
+    // await pickImage(ImageSource.gallery);
+
+    await updatePhoto(ImageSource.gallery);
   }
 
   @override
