@@ -1,6 +1,5 @@
 import 'package:STC/global.dart';
 import 'package:STC/model/shop.dart';
-import 'package:STC/pages/navigation-bar%20pages/History-page.dart';
 import 'package:STC/pages/navigation-bar%20pages/home-page.dart';
 import 'package:STC/pages/navigation-bar%20pages/search-page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,7 +25,7 @@ class dashboardState extends State<dashboard> {
   var navbar_pages = [
     const homepage(),
     const searchpage(),
-    const historypage()
+    // const historypage()
   ];
 
   @override
@@ -117,13 +116,13 @@ class dashboardState extends State<dashboard> {
                           right: 0,
                           child: CircleAvatar(
                             radius: 11,
+                            backgroundColor: appcolors.orangeAccent,
                             child: Text(
                               value.cart.length.toString(),
                               style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600),
                             ),
-                            backgroundColor: appcolors.orangeAccent,
                           ),
                         )
                       ]
@@ -158,7 +157,7 @@ class dashboardState extends State<dashboard> {
                   setState(() {
                     myIndex = index;
                     controller.animateToPage(myIndex,
-                        duration: Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 300),
                         curve: Curves.easeIn);
                   });
                 },

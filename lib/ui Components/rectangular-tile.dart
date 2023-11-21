@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../model/food.dart';
 
 class rectangularTile extends StatelessWidget {
-  final Food food;
+  final Datum food;
   final Function()? onTap;
 
   const rectangularTile({super.key, required this.food, this.onTap});

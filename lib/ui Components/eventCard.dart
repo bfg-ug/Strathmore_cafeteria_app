@@ -6,7 +6,7 @@ class eventCard extends StatelessWidget {
   final bool isPast;
   final child;
 
-  eventCard({super.key, required this.isPast, required this.child});
+  const eventCard({super.key, required this.isPast, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class eventCard extends StatelessWidget {
         elevation: 10,
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
               color: appcolors.blueAccent,
               borderRadius: BorderRadius.circular(20)),

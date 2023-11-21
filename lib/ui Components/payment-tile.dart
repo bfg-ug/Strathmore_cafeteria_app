@@ -6,7 +6,7 @@ class paymentTile extends StatelessWidget {
   final String text;
   final String route;
 
-  paymentTile(
+  const paymentTile(
       {super.key,
       required this.imagePath,
       required this.text,

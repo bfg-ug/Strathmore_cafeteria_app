@@ -17,8 +17,8 @@ class _paybyStaffIDState extends State<paybyStaffID> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text("Confirm payment"),
-              content: Container(
+              title: const Text("Confirm payment"),
+              content: const SizedBox(
                 height: 120,
                 child: Column(
                   children: [
@@ -44,7 +44,7 @@ class _paybyStaffIDState extends State<paybyStaffID> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Text(
                           "Do you confirm payment for the above stated amount"),
                     ),
@@ -58,8 +58,8 @@ class _paybyStaffIDState extends State<paybyStaffID> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.green),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text("Confirm"),
                         ))),
                 GestureDetector(
@@ -70,8 +70,8 @@ class _paybyStaffIDState extends State<paybyStaffID> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.red),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text("Cancel"),
                         ))),
               ],

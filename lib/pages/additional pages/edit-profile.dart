@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import '../utility.dart';
 
 class editprofile extends StatefulWidget {
-  editprofile({super.key});
+  const editprofile({super.key});
 
   @override
   State<editprofile> createState() => _editprofileState();
@@ -32,7 +32,7 @@ class _editprofileState extends State<editprofile> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text("Confirmation"),
+              title: const Text("Confirmation"),
               content: const Text(
                   "By clicking you are confirming that you wish to delete your account and all subsequent data related to the account"),
               actions: [
@@ -42,8 +42,8 @@ class _editprofileState extends State<editprofile> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.red),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text("Confirm"),
                         ))),
                 GestureDetector(
@@ -54,8 +54,8 @@ class _editprofileState extends State<editprofile> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.orange),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text("Cancel"),
                         ))),
               ],
@@ -93,8 +93,8 @@ class _editprofileState extends State<editprofile> {
     } else {
       showDialog(
           context: context,
-          builder: (context) => AlertDialog(
-                content: const Text("No changes were made to your account"),
+          builder: (context) => const AlertDialog(
+                content: Text("No changes were made to your account"),
               ));
     }
   }
@@ -169,7 +169,7 @@ class _editprofileState extends State<editprofile> {
                         ),
                         child: IconButton(
                             onPressed: selectImage,
-                            icon: Icon(Icons.add_a_photo_outlined)),
+                            icon: const Icon(Icons.add_a_photo_outlined)),
                       ),
                     )
                   ]),
@@ -227,10 +227,10 @@ class _editprofileState extends State<editprofile> {
                           decoration: BoxDecoration(
                               color: Colors.red,
                               borderRadius: BorderRadius.circular(30)),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               "Delete accunt",
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),

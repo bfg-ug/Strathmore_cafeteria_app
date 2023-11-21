@@ -6,20 +6,20 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 pickImage(ImageSource source) async {
-  final ImagePicker _imagepicker = ImagePicker();
+  final ImagePicker imagepicker = ImagePicker();
   final currentUser = FirebaseAuth.instance.currentUser!;
 
   String imageUrl;
 
-  XFile? _file = await _imagepicker.pickImage(source: source);
-  if (_file != null) {
+  XFile? file = await imagepicker.pickImage(source: source);
+  if (file != null) {
     Reference referenceRoot = FirebaseStorage.instance.ref();
     Reference referenceDirImages = referenceRoot.child('Profileimages');
     Reference referenceImageTobeUploaded =
-        referenceDirImages.child('${_file.name}');
+        referenceDirImages.child(file.name);
 
     try {
-      await referenceImageTobeUploaded.putFile(File(_file.path));
+      await referenceImageTobeUploaded.putFile(File(file.path));
       imageUrl = await referenceImageTobeUploaded.getDownloadURL();
       FirebaseFirestore.instance
           .collection('users')
@@ -32,12 +32,12 @@ pickImage(ImageSource source) async {
 }
 
 Future<void> updatePhoto(ImageSource source) async {
-  final ImagePicker _imagepicker = ImagePicker();
+  final ImagePicker imagepicker = ImagePicker();
   final currentUser = FirebaseAuth.instance.currentUser!;
 
   String imageUrl;
 
-  XFile? _file = await _imagepicker.pickImage(source: source);
+  XFile? file = await imagepicker.pickImage(source: source);
 
   DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
       .collection('users')
@@ -46,9 +46,9 @@ Future<void> updatePhoto(ImageSource source) async {
 
   Reference referenceImageTobeUploaded =
       FirebaseStorage.instance.refFromURL(documentSnapshot['Profile image']);
-  if (_file != null) {
+  if (file != null) {
     try {
-      await referenceImageTobeUploaded.putFile(File(_file.path));
+      await referenceImageTobeUploaded.putFile(File(file.path));
       imageUrl = await referenceImageTobeUploaded.getDownloadURL();
       FirebaseFirestore.instance
           .collection('users')

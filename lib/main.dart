@@ -45,18 +45,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isViewed != 0 ? const onBoarding() : preload(),
+      home: isViewed != 0 ? const onBoarding() : const preload(),
       routes: {
         '/cart': (context) => const cart(),
         '/paymentSelection': (context) => const paymentSelection(),
-        '/paybyMpesa': (context) => paybyMpesa(),
+        '/paybyMpesa': (context) => const paybyMpesa(),
         '/paybyStaffID': (context) => const paybyStaffID(),
         '/paymentSuccessful': (context) => const paymentSuccessful(),
-        '/homepage': (context) => dashboard(),
-        '/resetPassword': (context) => Forgot_password(),
-        '/profilepage': (context) => profile(),
-        '/login': (context) => Login(),
-        '/edit': (context) => editprofile(),
+        '/homepage': (context) => const dashboard(),
+        '/resetPassword': (context) => const Forgot_password(),
+        '/profilepage': (context) => const profile(),
+        '/login': (context) => const Login(),
+        '/edit': (context) => const editprofile(),
       },
     );
   }

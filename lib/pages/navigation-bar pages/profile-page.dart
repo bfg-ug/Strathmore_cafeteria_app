@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class profile extends StatefulWidget {
-  profile({super.key});
+  const profile({super.key});
 
   @override
   State<profile> createState() => _profileState();
@@ -66,7 +66,7 @@ class _profileState extends State<profile> {
                       height: 150,
                     ),
                   ],
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Text(
@@ -83,7 +83,7 @@ class _profileState extends State<profile> {
                         fontSize: 15,
                         fontWeight: FontWeight.w300),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Expanded(
@@ -91,7 +91,7 @@ class _profileState extends State<profile> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                     child: ListView(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -106,13 +106,13 @@ class _profileState extends State<profile> {
                                   Navigator.pushNamed(context, '/edit');
                                 },
                                 iconColor: Colors.white,
-                                leading: Icon(Icons.person_2_outlined),
+                                leading: const Icon(Icons.person_2_outlined),
                                 title: Text(
                                   "Edit profile",
                                   style: GoogleFonts.poppins(
                                       color: Colors.white, fontSize: 18),
                                 ),
-                                trailing: Icon(Icons.arrow_forward_ios),
+                                trailing: const Icon(Icons.arrow_forward_ios),
                               ),
                             ),
                           ),
@@ -131,13 +131,13 @@ class _profileState extends State<profile> {
                                       context, '/resetPassword');
                                 },
                                 iconColor: Colors.white,
-                                leading: Icon(Icons.lock_reset),
+                                leading: const Icon(Icons.lock_reset),
                                 title: Text(
                                   "Reset password",
                                   style: GoogleFonts.poppins(
                                       color: Colors.white, fontSize: 18),
                                 ),
-                                trailing: Icon(Icons.arrow_forward_ios),
+                                trailing: const Icon(Icons.arrow_forward_ios),
                               ),
                             ),
                           ),
@@ -152,13 +152,13 @@ class _profileState extends State<profile> {
                               padding: const EdgeInsets.symmetric(vertical: 8),
                               child: ListTile(
                                 iconColor: Colors.white,
-                                leading: Icon(Icons.credit_card_off_outlined),
+                                leading: const Icon(Icons.credit_card_off_outlined),
                                 title: Text(
                                   "Refund",
                                   style: GoogleFonts.poppins(
                                       color: Colors.white, fontSize: 18),
                                 ),
-                                trailing: Icon(Icons.arrow_forward_ios),
+                                trailing: const Icon(Icons.arrow_forward_ios),
                               ),
                             ),
                           ),
@@ -177,13 +177,13 @@ class _profileState extends State<profile> {
                                   Navigator.pop(context);
                                 },
                                 iconColor: Colors.white,
-                                leading: Icon(Icons.signpost_outlined),
+                                leading: const Icon(Icons.signpost_outlined),
                                 title: Text(
                                   "Sign Out",
                                   style: GoogleFonts.poppins(
                                       color: Colors.white, fontSize: 18),
                                 ),
-                                trailing: Icon(Icons.arrow_forward_ios),
+                                trailing: const Icon(Icons.arrow_forward_ios),
                               ),
                             ),
                           ),

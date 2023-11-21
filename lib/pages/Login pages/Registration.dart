@@ -69,8 +69,8 @@ class _registerState extends State<register> {
         } catch (error) {
           showDialog(
               context: context,
-              builder: (context) => AlertDialog(
-                    content: const Text(
+              builder: (context) => const AlertDialog(
+                    content: Text(
                         "The user account already exists, Please login"),
                   ));
         }
@@ -78,8 +78,8 @@ class _registerState extends State<register> {
     } else {
       showDialog(
           context: context,
-          builder: (context) => AlertDialog(
-                content: const Text("All fields must filled"),
+          builder: (context) => const AlertDialog(
+                content: Text("All fields must filled"),
               ));
     }
   }
@@ -245,8 +245,8 @@ class _registerState extends State<register> {
                           });
                         },
                         icon: _isVisible
-                            ? Icon(Icons.visibility)
-                            : Icon(Icons.visibility_off),
+                            ? const Icon(Icons.visibility)
+                            : const Icon(Icons.visibility_off),
                         color: Colors.grey,
                       ),
                     ),
@@ -287,7 +287,7 @@ class _registerState extends State<register> {
                     )
                   ],
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
               ],
             ),
           ),

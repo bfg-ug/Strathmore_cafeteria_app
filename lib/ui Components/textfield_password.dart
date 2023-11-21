@@ -21,7 +21,7 @@ class _textfieldPasswordState extends State<textfieldPassword> {
 
     final isPasswordStrong = input!.length >= 8;
 
-    if (!isPasswordStrong!) {
+    if (!isPasswordStrong) {
       return "Password must be atleast 8 characters long";
     }
     if (!containsUppercase!) {
@@ -49,7 +49,7 @@ class _textfieldPasswordState extends State<textfieldPassword> {
             _isVisible = !_isVisible;
           });
         },
-        icon: _isVisible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+        icon: _isVisible ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
         color: Colors.grey,
       ),
     );

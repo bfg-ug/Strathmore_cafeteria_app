@@ -9,7 +9,7 @@ import '../model/shop.dart';
 import 'SubmitBtn.dart';
 
 class DetailScreen extends StatefulWidget {
-  final Food food;
+  final Datum food;
 
   const DetailScreen({super.key, required this.food});
 
@@ -92,7 +92,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Text(
-                            widget.food.rating,
+                            "5",
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,

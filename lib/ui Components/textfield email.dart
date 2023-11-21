@@ -17,7 +17,7 @@ class _textfieldState extends State<textfieldEmail> {
 
     final isValid = emailRegex.hasMatch(email!);
 
-    if (!isValid!) {
+    if (!isValid) {
       return "Enter valid email";
     }
     return null;

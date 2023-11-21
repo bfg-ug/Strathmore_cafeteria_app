@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../model/food.dart';
 
 class squareTile extends StatelessWidget {
-  final Food food;
+  final Datum food;
   final Function()? onTap;
 
   const squareTile({super.key, required this.food, this.onTap});

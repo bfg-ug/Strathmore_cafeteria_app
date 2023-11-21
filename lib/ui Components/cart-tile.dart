@@ -5,10 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 class cartTile extends StatelessWidget {
   final String foodname;
   final String imagepath;
-  final String foodprice;
+  final int foodprice;
   final int quantity;
 
-  cartTile(
+  const cartTile(
       {super.key,
       required this.foodname,
       required this.imagepath,
@@ -56,7 +56,7 @@ class cartTile extends StatelessWidget {
 
                         // food price
                         Text(
-                          "Ksh: " + foodprice,
+                          "Ksh: $foodprice",
                           style: GoogleFonts.poppins(
                               fontSize: 15,
                               color: Colors.white,

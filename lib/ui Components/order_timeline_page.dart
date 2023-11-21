@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class order_timeline extends StatefulWidget {
-  order_timeline({super.key});
+  const order_timeline({super.key});
   @override
   State<order_timeline> createState() => _order_timelineState();
 }
@@ -37,7 +37,7 @@ class _order_timelineState extends State<order_timeline> {
             //Start timeline
 
             //Order placed
-            myTimelineTile(
+            const myTimelineTile(
               isFirst: true,
               isLast: false,
               isPast: true,

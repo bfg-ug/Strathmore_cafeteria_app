@@ -37,13 +37,13 @@ class _cartState extends State<cart> {
                   itemCount: value.cart.length,
                   itemBuilder: (context, index) {
                     // get food
-                    final Food food = value.cart[index];
+                    final Datum food = value.cart[index];
 
                     // get name
                     final String foodName = food.name;
 
                     // get price
-                    final int foodPrice = food.price;
+                    // final int foodPrice = food.price;
 
                     final String foodImage = food.imagepath;
 
@@ -91,7 +91,7 @@ class _cartState extends State<cart> {
 
                                         // food price
                                         Text(
-                                          "Ksh: $foodPrice",
+                                          "Ksh:",
                                           style: GoogleFonts.poppins(
                                               fontSize: 15,
                                               color: Colors.white,
@@ -134,7 +134,7 @@ class _cartState extends State<cart> {
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.w700)),
-                  Text("Ksh: " + value.total().toString(),
+                  Text("Ksh: ${value.total()}",
                       style: GoogleFonts.poppins(
                           fontSize: 20,
                           color: Colors.white,
@@ -151,8 +151,8 @@ class _cartState extends State<cart> {
                   } else {
                     showDialog(
                         context: context,
-                        builder: (context) => AlertDialog(
-                              content: const Text("Your cart is empty"),
+                        builder: (context) => const AlertDialog(
+                              content: Text("Your cart is empty"),
                             ));
                   }
                 },

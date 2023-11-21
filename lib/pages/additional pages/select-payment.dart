@@ -28,7 +28,7 @@ class paymentSelection extends StatelessWidget {
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
-              children: [
+              children: const [
                 paymentTile(
                     imagePath: "lib/images/mpesa.png",
                     text: "Mpesa",

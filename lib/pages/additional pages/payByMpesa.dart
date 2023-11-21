@@ -9,7 +9,7 @@ import 'package:mpesa_flutter_plugin/payment_enums.dart';
 import 'package:provider/provider.dart';
 
 class paybyMpesa extends StatefulWidget {
-  paybyMpesa({super.key});
+  const paybyMpesa({super.key});
 
   @override
   State<paybyMpesa> createState() => _paybyMpesaState();
@@ -38,7 +38,9 @@ class _paybyMpesaState extends State<paybyMpesa> {
               partyA: _phoneNumberController.text.toString(),
               partyB: "174379",
               callBackURL: Uri(
-                  scheme: "https", host: "1234.1234.co.ke", path: "/1234.php"),
+                  scheme: "https",
+                  host: "console.firebase.google.com",
+                  path: "/project/stc-app-2b183/"),
               accountReference: "payment",
               phoneNumber: _phoneNumberController.text.toString(),
               baseUri: Uri(scheme: "https", host: "sandbox.safaricom.co.ke"),
@@ -59,7 +61,7 @@ class _paybyMpesaState extends State<paybyMpesa> {
   4. Phone number not in international format(should start with 254 for KE)
    */
 
-      print("CAUGHT EXCEPTION: " + e.toString());
+      print("CAUGHT EXCEPTION: $e");
     }
   }
 

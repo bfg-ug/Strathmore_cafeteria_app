@@ -31,7 +31,7 @@ class introPage_2 extends StatelessWidget {
                   )),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           Padding(

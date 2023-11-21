@@ -11,7 +11,7 @@ class order_tile extends StatefulWidget {
   final String orderNumber;
   final String status;
 
-  order_tile(
+  const order_tile(
       {super.key,
       required this.foodname,
       required this.imagepath,
@@ -126,7 +126,7 @@ class _order_tileState extends State<order_tile> {
                         percent: percent,
                         backgroundColor: Colors.grey,
                         progressColor: appcolors.orangeAccent,
-                        barRadius: Radius.circular(50),
+                        barRadius: const Radius.circular(50),
                       ),
                     ),
                   ],

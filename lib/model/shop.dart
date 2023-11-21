@@ -1,6 +1,3 @@
-import 'package:STC/model/pets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -9,83 +6,30 @@ import 'food.dart';
 
 class shop extends ChangeNotifier {
   //Menu
-  final List<Food> _Menu = [
-    Food(
-        price: 1200,
-        name: "Beef",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1200,
-        name: "Chicken",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1200,
-        name: "Goat",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1200,
-        name: "Fish",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-  ];
+  final List<Datum> _Menu = [];
 
   //Popular items
-  final List<Food> _popular_items = [
-    Food(
-        price: 1200,
-        name: "Beef",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 2000,
-        name: "Chicken",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1500,
-        name: "Goat",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-    Food(
-        price: 1400,
-        name: "Fish",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-  ];
+  final List<Datum> _popular_items = [];
 
   //Offers
-  final List<Food> _todays_Offers = [
-    Food(
-        price: 1200,
-        name: "Two for one special",
-        imagepath: "lib/images/burger 3.png",
-        rating: "5"),
-    Food(
-        price: 2000,
-        name: "Ugandan matooke",
-        imagepath: "lib/images/food.jpg",
-        rating: "5"),
-  ];
+  final List<Datum> _todays_Offers = [];
 
   // Customer cart
-  final List<Food> _cart = [];
+  final List<Datum> _cart = [];
 
   //getter method
-  List<Food> get Menu => _Menu;
+  List<Datum> get Menu => _Menu;
 
-  List<Food> get cart => _cart;
+  List<Datum> get cart => _cart;
 
-  List<Food> get popular_items => _popular_items;
+  List<Datum> get popular_items => _popular_items;
 
-  List<Food> get todays_offer => _todays_Offers;
+  List<Datum> get todays_offer => _todays_Offers;
 
-  List<Food> get found_items => _found_items;
+  List<Datum> get found_items => _found_items;
 
   //add to cart
-  void addtoCart(Food foodItem, int quantity) {
+  void addtoCart(Datum foodItem, int quantity) {
     for (int i = 0; i < quantity; i++) {
       _cart.add(foodItem);
       notifyListeners();
@@ -93,7 +37,7 @@ class shop extends ChangeNotifier {
   }
 
   // remove from cart
-  void removefromCart(Food fooditem) {
+  void removefromCart(Datum fooditem) {
     _cart.remove(fooditem);
     notifyListeners();
   }
@@ -102,14 +46,14 @@ class shop extends ChangeNotifier {
   int total() {
     int totalprice = 0;
     for (int i = 0; i < _cart.length; i++) {
-      totalprice += _cart[i].price;
+      // totalprice += _cart[i].price;
     }
 
     return totalprice;
   }
 
   //Search
-  List<Food> _found_items = [];
+  List<Datum> _found_items = [];
   String searchtext = "";
 
   updateData() {
@@ -128,39 +72,38 @@ class shop extends ChangeNotifier {
     updateData();
   }
 
-  //API Test
-  static const apiEndpoint =
-      "https://jatinderji.github.io/users_pets_api/users_pets.json";
-
+  Food food = Food(data: []);
   bool isloading = true;
-
   String error = "";
+  //API get products
+  Future<void> makeGetRequest() async {
+    const token = "33|tu3oYBKxqdyBk8KtgGMSlq9KwGwsZRKs6FZJOSqle5d7896b";
+    const url =
+        'http://209.38.204.8/api/products'; // Replace with your API endpoint
 
-  Pets pets = Pets(data: []);
-
-  getDatafromApi() async {
     try {
-      Response response = await http.get(Uri.parse(apiEndpoint));
+      Response response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json', // Include additional headers if needed
+        },
+      );
+
       if (response.statusCode == 200) {
-        pets = petsFromJson(response.body);
+        // Request successful, handle the response data
+        food = foodFromJson(response.body);
+        print(response.body);
       } else {
+        // Request failed, handle the error
         error = response.statusCode.toString();
       }
     } catch (e) {
-      error = e.toString();
+      // Exception occurred, handle the error
+      print('Exception: $e');
     }
 
     isloading = false;
-
     notifyListeners();
-  }
-
-  getUserInfo() async {
-    var currentUser = FirebaseAuth.instance.currentUser!;
-
-    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser.uid)
-        .get();
   }
 }

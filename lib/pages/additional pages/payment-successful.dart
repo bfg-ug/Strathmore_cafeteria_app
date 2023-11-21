@@ -18,13 +18,9 @@ class _paymentSuccessfulState extends State<paymentSuccessful>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   bool paymentSuccess = true;
 
@@ -42,14 +38,14 @@ class _paymentSuccessfulState extends State<paymentSuccessful>
               Container(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 100,
                     ),
                     if (paymentSuccess == false) ...[
                       Lottie.asset("lib/images/failure_animation.json",
                           controller: _controller,
                           repeat: false, onLoaded: (composition) {
-                        _controller.duration = Duration(seconds: 2);
+                        _controller.duration = const Duration(seconds: 2);
                         _controller.forward();
                         _controller.addStatusListener((status) async {
                           if (status == AnimationStatus.completed) {
@@ -57,7 +53,7 @@ class _paymentSuccessfulState extends State<paymentSuccessful>
                           }
                         });
                       }),
-                      SizedBox(height: 100),
+                      const SizedBox(height: 100),
                       Text("Payment Failed",
                           style: GoogleFonts.poppins(
                               fontSize: 30,

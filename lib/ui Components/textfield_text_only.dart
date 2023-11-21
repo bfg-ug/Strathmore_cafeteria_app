@@ -15,7 +15,7 @@ class _textfieldOnlyTextState extends State<textfieldOnlyText> {
   String? containsOnlyLetters(String? input) {
     final containsOnlyLetters = RegExp(r'^[a-zA-Z]+$').hasMatch(input!);
 
-    if (!containsOnlyLetters!) {
+    if (!containsOnlyLetters) {
       return "Number, special characters and spaces are not allowed";
     }
     return null;
