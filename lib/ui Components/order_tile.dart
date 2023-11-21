@@ -1,11 +1,9 @@
 import 'package:STC/global.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class order_tile extends StatefulWidget {
   final String foodname;
-  final String imagepath;
   final String foodprice;
   final int quantity;
   final String orderNumber;
@@ -14,7 +12,6 @@ class order_tile extends StatefulWidget {
   const order_tile(
       {super.key,
       required this.foodname,
-      required this.imagepath,
       required this.foodprice,
       required this.quantity,
       required this.orderNumber,
@@ -27,7 +24,6 @@ class order_tile extends StatefulWidget {
 class _order_tileState extends State<order_tile> {
   @override
   Widget build(BuildContext context) {
-    double percent = 0.33;
     return Material(
       elevation: 10,
       borderRadius: BorderRadius.circular(20),
@@ -64,7 +60,8 @@ class _order_tileState extends State<order_tile> {
                     child: SizedBox(
                       height: 90,
                       width: 100,
-                      child: Image.network(widget.imagepath, fit: BoxFit.cover),
+                      child:
+                          Image.asset("lib/icons/salad.png", fit: BoxFit.cover),
                     ),
                   ),
                 ),
@@ -110,27 +107,11 @@ class _order_tileState extends State<order_tile> {
                         fontSize: 15,
                         color: Colors.white,
                         fontWeight: FontWeight.w600)),
-                Column(
-                  children: [
-                    Text(widget.status,
-                        style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500)),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: LinearPercentIndicator(
-                        animation: true,
-                        width: 150.0,
-                        lineHeight: 10.0,
-                        percent: percent,
-                        backgroundColor: Colors.grey,
-                        progressColor: appcolors.orangeAccent,
-                        barRadius: const Radius.circular(50),
-                      ),
-                    ),
-                  ],
-                ),
+                Text(widget.status,
+                    style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500)),
               ],
             )
           ],

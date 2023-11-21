@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'navigation-bar pages/History-page.dart';
+
 class dashboard extends StatefulWidget {
   const dashboard({super.key});
 
@@ -25,7 +27,7 @@ class dashboardState extends State<dashboard> {
   var navbar_pages = [
     const homepage(),
     const searchpage(),
-    // const historypage()
+    const historypage()
   ];
 
   @override

@@ -2,7 +2,7 @@ import 'package:STC/global.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class cartTile extends StatelessWidget {
+class cartTile extends StatefulWidget {
   final String foodname;
   final String imagepath;
   final int foodprice;
@@ -15,6 +15,11 @@ class cartTile extends StatelessWidget {
       required this.foodprice,
       required this.quantity});
 
+  @override
+  State<cartTile> createState() => _cartTileState();
+}
+
+class _cartTileState extends State<cartTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,7 +41,7 @@ class cartTile extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox(
-                        child: Image.asset(imagepath, fit: BoxFit.cover),
+                        child: Image.asset(widget.imagepath, fit: BoxFit.cover),
                       ),
                     ),
                   ),
@@ -47,7 +52,7 @@ class cartTile extends StatelessWidget {
                       children: [
                         // food name
                         Text(
-                          foodname,
+                          widget.foodname,
                           style: GoogleFonts.poppins(
                               fontSize: 15,
                               color: Colors.white,
@@ -56,7 +61,7 @@ class cartTile extends StatelessWidget {
 
                         // food price
                         Text(
-                          "Ksh: $foodprice",
+                          "Ksh: ${widget.foodprice}",
                           style: GoogleFonts.poppins(
                               fontSize: 15,
                               color: Colors.white,
@@ -64,7 +69,7 @@ class cartTile extends StatelessWidget {
                         ),
 
                         // food quantity
-                        Text("Quantity: $quantity",
+                        Text("Quantity: ${widget.quantity}",
                             style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 color: Colors.white,
